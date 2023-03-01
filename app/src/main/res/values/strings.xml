@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Home Financial Assistant</string>
+    <string name="main">На главную</string>
+    <string name="credit_calculator">Кредитный калькулятор</string>
+    <string name="calculator_credit_card">Калькулятор кредитной карты</string>
+</resources>
