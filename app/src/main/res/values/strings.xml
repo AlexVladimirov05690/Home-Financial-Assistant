@@ -3,4 +3,14 @@
     <string name="main">На главную</string>
     <string name="credit_calculator">Кредитный калькулятор</string>
     <string name="calculator_credit_card">Калькулятор кредитной карты</string>
+    <string name="calculation">Расчёт кредита</string>
+    <string name="credit_params">Введите параметры кредита</string>
+    <string name="enter_amount_of_credit">Введите сумму кредита</string>
+    <string name="enter_tern_of_credit">Введите срок кредита</string>
+    <string name="enter_percent_of_credit">Введите предлагаемый процент</string>
+    <string name="do_you_want_exit">Вы уверены, что хотите выйти?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="monthly_payment">Ежемесячный платёж:</string>
+    <string name="overpayment">Переплата:</string>
 </resources>

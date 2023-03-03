@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.fragments.CreditCalculatorFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/top_headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/credit_params"
+            android:theme="@style/HeadLine1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/enter_amount_of_credit_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxStrokeColor="@color/secondary_color"
+            android:hint="@string/enter_amount_of_credit"
+            app:layout_constraintTop_toBottomOf="@+id/top_headline"
+            app:endIconMode="clear_text"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/enter_amount_of_credit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/enter_tern_of_credit_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxStrokeColor="@color/secondary_color"
+            android:hint="@string/enter_tern_of_credit"
+            app:layout_constraintTop_toBottomOf="@+id/enter_amount_of_credit_container"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/enter_tern_of_credit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/enter_percent_of_credit_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxStrokeColor="@color/secondary_color"
+            android:hint="@string/enter_percent_of_credit"
+            app:layout_constraintTop_toBottomOf="@+id/enter_tern_of_credit_container"
+            app:endIconMode="clear_text"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/enter_percent_of_credit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/monthly_payment_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxStrokeColor="@color/secondary_color"
+            android:textColorHint="@color/black"
+            android:hint="@string/monthly_payment"
+            app:layout_constraintBottom_toTopOf="@+id/overpayment_container"
+            app:endIconMode="clear_text"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/monthly_payment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/overpayment_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxStrokeColor="@color/secondary_color"
+            android:textColorHint="@color/black"
+            android:hint="@string/overpayment"
+            app:layout_constraintBottom_toTopOf="@+id/calculation"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/overpayment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+        <Button
+            android:id="@+id/calculation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="@string/calculation"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
