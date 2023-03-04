@@ -1,24 +1,24 @@
 package com.example.homefinancialassistant.utils
 
-import com.example.homefinancialassistant.App
-import com.example.homefinancialassistant.utils.math.AnnuityRatio
-import javax.inject.Inject
+import kotlin.math.pow
 
 class Credit() {
-    @Inject
-    lateinit var annuityRatio: AnnuityRatio
-
-    init {
-        App.instance.dagger.inject(this)
-    }
 
     fun monthlyPayment(amount: Double, tern: Double, percent: Double): Double {
-        return amount * annuityRatio.getAnnuityRatio(tern, percent)
+        return amount * getAnnuityRatio(tern, percent)
     }
 
     fun overpayment(amount: Double, tern: Double, percent: Double): Double {
         return (monthlyPayment(amount, tern, percent) * tern - amount)
     }
+
+    private fun getAnnuityRatio(tern: Double, percent: Double): Double {
+        val monthlyInterestRate = percent / 12 / 100
+        val temp = (1 + monthlyInterestRate).pow(tern)
+        return (monthlyInterestRate * temp)/(temp - 1)
+    }
+
+
 
 
 }
