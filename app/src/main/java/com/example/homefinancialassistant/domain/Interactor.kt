@@ -19,4 +19,8 @@ class Interactor {
     fun getOverpayment(amount: Double, tern: Double, percent: Double): Double {
         return credit.overpayment(amount, tern, percent)
     }
+
+    fun getPercentBack(amount: Double, tern: Double, monthlyPayment: Double): Double {
+        return credit.getPercent(amount, tern, monthlyPayment)
+    }
 }

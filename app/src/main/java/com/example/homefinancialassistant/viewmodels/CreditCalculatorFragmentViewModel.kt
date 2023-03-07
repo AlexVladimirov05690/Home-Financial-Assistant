@@ -31,10 +31,23 @@ class CreditCalculatorFragmentViewModel: ViewModel() {
     val monthlyPayment: MutableLiveData<Double> by lazy {
         MutableLiveData<Double>()
     }
+    val monthlyPaymentBack: MutableLiveData<Double> by lazy {
+        MutableLiveData<Double>()
+    }
+    val percentBack: MutableLiveData<Double> by lazy {
+        MutableLiveData<Double>()
+    }
+
 
     fun calculation() {
         monthlyPayment.value = interactor.getMonthlyPayment(amount.value?: 0.0, tern.value?: 0.0, percent.value?: 0.0)
         overpayment.value = interactor.getOverpayment(amount.value?: 0.0, tern.value?: 0.0, percent.value?: 0.0)
+    }
+
+    fun calculationBack() {
+        percentBack.value = interactor.getPercentBack(amount.value?: 0.0, tern.value?: 0.0, monthlyPaymentBack.value?: 0.0)
+        overpayment.value = interactor.getOverpayment(amount.value?: 0.0, tern.value?: 0.0, percentBack.value?: 0.0)
+
     }
 
 

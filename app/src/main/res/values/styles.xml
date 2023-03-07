@@ -6,4 +6,10 @@
         <item name="android:textStyle">bold</item>
         <item name="android:typeface">monospace</item>
     </style>
+
+    <style name="Field_credit" >
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:typeface">monospace</item>
+    </style>
 </resources>
