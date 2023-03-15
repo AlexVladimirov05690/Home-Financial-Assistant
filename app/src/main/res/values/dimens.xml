@@ -5,4 +5,5 @@
     <dimen name="spacing_between_elements">10dp</dimen>
     <dimen name="bottom_textview_on_main_height">35dp</dimen>
     <dimen name="bottom_textview_on_main_weight">180dp</dimen>
+    <dimen name="height_edit_text">55dp</dimen>
 </resources>

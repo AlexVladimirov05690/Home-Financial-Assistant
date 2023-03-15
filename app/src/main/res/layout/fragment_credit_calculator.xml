@@ -27,15 +27,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_between_elements"
-            android:hint="@string/enter_amount_of_credit"
             app:boxStrokeColor="@color/secondary_color"
             app:endIconMode="clear_text"
             app:layout_constraintTop_toBottomOf="@+id/top_headline">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:hint="@string/enter_amount_of_credit"
                 android:id="@+id/enter_amount_of_credit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:theme="@style/Field_credit"
+                android:layout_height="@dimen/height_edit_text"
                 android:inputType="numberDecimal"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -45,15 +46,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_between_elements"
-            android:hint="@string/enter_tern_of_credit"
             app:boxStrokeColor="@color/secondary_color"
             app:endIconMode="clear_text"
             app:layout_constraintTop_toBottomOf="@+id/enter_amount_of_credit_container">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:hint="@string/enter_tern_of_credit"
                 android:id="@+id/enter_tern_of_credit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:theme="@style/Field_credit"
+                android:layout_height="@dimen/height_edit_text"
                 android:inputType="numberDecimal"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -63,16 +65,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_between_elements"
-            android:hint="@string/enter_percent_of_credit"
             app:boxStrokeColor="@color/secondary_color"
             app:endIconMode="clear_text"
             app:layout_constraintTop_toBottomOf="@+id/enter_tern_of_credit_container">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/enter_percent_of_credit"
+                android:hint="@string/enter_percent_of_credit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"/>
+                android:layout_height="@dimen/height_edit_text"
+                android:theme="@style/Field_credit"
+                android:inputType="numberDecimal"
+                tools:ignore="DuplicateClickableBoundsCheck,DuplicateClickableBoundsCheck,DuplicateClickableBoundsCheck" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,16 +85,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_between_elements"
-            android:hint="@string/monthly_payment_back"
             android:textColorHint="@color/black"
             app:boxStrokeColor="@color/secondary_color"
             app:endIconMode="clear_text"
-            app:layout_constraintTop_toBottomOf="@+id/enter_tern_of_credit_container">
+            app:layout_constraintTop_toBottomOf="@+id/enter_tern_of_credit_container"
+            android:visibility="invisible">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:hint="@string/monthly_payment_back"
                 android:id="@+id/monthly_payment_back"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:theme="@style/Field_credit"
+                android:layout_height="@dimen/height_edit_text"
                 android:inputType="numberDecimal"
                 />
 

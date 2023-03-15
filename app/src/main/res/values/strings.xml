@@ -18,4 +18,7 @@
     <string name="monthly_payment_back">Введите ежемесячный платёж:</string>
     <string name="overpayment">Переплата:</string>
     <string name="null_number">0.0</string>
+    <string name="enter_your_email">Введите ваш адресс электронной почты</string>
+    <string name="enter_your_password">Введите пароль</string>
+    <string name="authorization">Авторизация</string>
 </resources>

@@ -53,6 +53,8 @@ class CreditCalculatorFragment : Fragment() {
 
     private fun initFields(change: Int) {
         if(change == 0) {
+            binding.topHeadline.text = getString(R.string.credit_calculator)
+            binding.enterPercentOfCreditContainer.isVisible = true
             binding.monthlyPaymentContainerBack.isVisible = false
             binding.enterPercentOfCredit.isVisible = true
             binding.monthlyPaymentField.text = getString(R.string.monthly_payment)
@@ -66,6 +68,8 @@ class CreditCalculatorFragment : Fragment() {
                 binding.overpayValue.text = it.toString()
             }
         } else {
+            binding.topHeadline.text = getString(R.string.credit_calculator_back)
+            binding.enterPercentOfCreditContainer.isVisible = false
             binding.monthlyPaymentContainerBack.isVisible = true
             binding.enterPercentOfCredit.isVisible = false
             binding.monthlyPaymentField.text = getString(R.string.percent_back)
