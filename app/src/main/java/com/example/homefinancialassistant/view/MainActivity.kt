@@ -2,11 +2,11 @@ package com.example.homefinancialassistant.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.example.homefinancialassistant.R
 import com.example.homefinancialassistant.databinding.ActivityMainBinding
 import com.example.homefinancialassistant.view.fragments.CreditCalculatorFragment
+import com.example.homefinancialassistant.view.fragments.ExchangeRatesFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -18,21 +18,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount == 0) {
-            AlertDialog.Builder(this)
-                .setTitle(R.string.do_you_want_exit)
-                .setIcon(R.drawable.ic_launcher_foreground)
-                .setPositiveButton(R.string.yes) { _, _ ->
-                    finish()
-                }
-                .setNegativeButton(R.string.no) { _, _ ->
-                }
-                .show()
-        } else {
-            super.onBackPressed()
-        }
-    }
+
 
 
     private fun initButtons(){
@@ -42,6 +28,12 @@ class MainActivity : AppCompatActivity() {
                     val tag = "credit_calculator"
                     val fragment = checkFragmentExistence(tag)
                     changeFragment(fragment?: CreditCalculatorFragment(), tag)
+                    true
+                }
+                R.id.rate -> {
+                    val tag = "rate"
+                    val fragment = checkFragmentExistence(tag)
+                    changeFragment(fragment?: ExchangeRatesFragment(), tag)
                     true
                 }
                 else -> false

@@ -1,6 +1,7 @@
 package com.example.homefinancialassistant.domain
 
 import com.example.homefinancialassistant.App
+import com.example.homefinancialassistant.data.CurrencyFreaksApi
 import com.example.homefinancialassistant.utils.Credit
 import javax.inject.Inject
 
@@ -23,4 +24,5 @@ class Interactor {
     fun getPercentBack(amount: Double, tern: Double, monthlyPayment: Double): Double {
         return credit.getPercent(amount, tern, monthlyPayment)
     }
+
 }
