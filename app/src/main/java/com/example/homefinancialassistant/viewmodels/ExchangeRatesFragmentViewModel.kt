@@ -3,10 +3,12 @@ package com.example.homefinancialassistant.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.homefinancialassistant.App
+import com.example.homefinancialassistant.domain.Interactor
 import com.example.homefinancialassistant.domain.InteractorNetwork
 import javax.inject.Inject
 
 class ExchangeRatesFragmentViewModel: ViewModel() {
+
 
     @Inject
     lateinit var interactorNetwork: InteractorNetwork
@@ -20,6 +22,6 @@ class ExchangeRatesFragmentViewModel: ViewModel() {
     }
 
     fun updateCourseDollar() {
-        courseDollar.value = interactorNetwork.getRateEuroToDollar().rate
+        courseDollar.value = interactorNetwork.getRateEuroToDollar()
     }
 }

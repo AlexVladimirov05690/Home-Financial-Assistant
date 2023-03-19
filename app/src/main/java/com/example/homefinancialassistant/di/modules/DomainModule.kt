@@ -9,7 +9,7 @@ import javax.inject.Singleton
 
 @Module
 class DomainModule {
-    @Singleton
     @Provides
+    @Singleton
     fun provideInteractorNetwork(currencyFreaksApi: CurrencyFreaksApi) = InteractorNetwork(retrofitService = currencyFreaksApi)
 }

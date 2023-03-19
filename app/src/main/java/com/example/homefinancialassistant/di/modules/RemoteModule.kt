@@ -3,6 +3,7 @@ package com.example.homefinancialassistant.di.modules
 import com.example.homefinancialassistant.BuildConfig
 import com.example.homefinancialassistant.data.ApiConstants
 import com.example.homefinancialassistant.data.CurrencyFreaksApi
+import com.example.homefinancialassistant.domain.InteractorNetwork
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -38,4 +39,6 @@ class RemoteModule {
     @Provides
     @Singleton
     fun provideCurrencyFreaksApi(retrofit: Retrofit): CurrencyFreaksApi = retrofit.create(CurrencyFreaksApi::class.java)
+
+
 }

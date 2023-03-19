@@ -9,51 +9,91 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="@dimen/margin_top_authorization_fragment">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/authorization"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/authorization"
+            android:theme="@style/HeadLine1"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/authorization_text"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/bottom_textview_on_main_height"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/authorization"
-            android:theme="@style/HeadLine1"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:text="@string/authorization_title"
+            android:theme="@style/Title_authorization"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/authorization"
+            />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/enter_email_field"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/button_container"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_edit_text"
-            android:layout_marginTop="@dimen/spacing_between_elements"
-            app:boxStrokeColor="@color/secondary_color"
-            app:endIconMode="clear_text"
-            app:layout_constraintTop_toBottomOf="@+id/authorization_text">
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/authorization_text"
+            android:layout_margin="30dp"
+            android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/enter_email"
-                android:hint="@string/enter_your_email"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/sign_google"
+                android:text="@string/sign_google"
+                android:theme="@style/button_authorization"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/height_edit_text"
-                android:inputType="textEmailAddress" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="@dimen/authorization_button_height"
+                android:background="@drawable/button_sign"
+                android:textColor="@color/black"
+                app:icon="@drawable/google_icon"
+                app:iconSize="20dp"
+                android:layout_marginTop="@dimen/margin_top_authorization_buttons"
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/enter_password_field"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/height_edit_text"
-            android:layout_marginTop="@dimen/spacing_between_elements"
-            app:boxStrokeColor="@color/secondary_color"
-            app:endIconMode="clear_text"
-            app:layout_constraintTop_toBottomOf="@+id/enter_email_field">
+                />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/enter_password"
-                android:hint="@string/enter_your_password"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/sign_vk"
+                android:text="@string/sign_vk"
+                android:theme="@style/button_authorization"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/height_edit_text"
-                android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="@dimen/authorization_button_height"
+                android:background="@drawable/button_sign"
+                app:backgroundTint="@color/color_vk"
+                app:icon="@drawable/vk_icon"
+                app:iconSize="20dp"
+                android:layout_marginTop="@dimen/margin_top_authorization_buttons"
+                />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/sign_email"
+                android:text="@string/sign_email"
+                android:theme="@style/button_authorization"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/authorization_button_height"
+                android:background="@drawable/button_sign"
+                app:icon="@drawable/baseline_email"
+                app:backgroundTint="#E91E63"
+                app:iconSize="20dp"
+                android:layout_marginTop="@dimen/margin_top_authorization_buttons"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/sign_guest"
+                android:text="@string/sign_guest"
+                android:theme="@style/button_authorization"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/authorization_button_height"
+                android:background="@drawable/button_sign"
+                app:backgroundTint="@color/white"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/margin_top_authorization_buttons"
+                />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

@@ -6,4 +6,9 @@
     <dimen name="bottom_textview_on_main_height">35dp</dimen>
     <dimen name="bottom_textview_on_main_weight">180dp</dimen>
     <dimen name="height_edit_text">55dp</dimen>
+    <dimen name="margin_top_authorization_fragment">64dp</dimen>
+    <dimen name="margin_top_authorization_buttons">20dp</dimen>
+    <dimen name="title_container_authorization_fragment">20dp</dimen>
+    <dimen name="corner_authorization_button">100dp</dimen>
+    <dimen name="authorization_button_height">50dp</dimen>
 </resources>

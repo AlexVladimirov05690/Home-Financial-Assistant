@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="HeadLine1" >
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">28sp</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textStyle">bold</item>
         <item name="android:typeface">monospace</item>
+        <item name="android:fontFamily">@font/fraunces</item>
+    </style>
+
+    <style name="Title_authorization">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:fontFamily">@font/outfit</item>
+    </style>
+
+    <style name="button_authorization">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:fontFamily">@font/outfit</item>
     </style>
 
     <style name="Field_credit" >
