@@ -19,8 +19,11 @@
         android:layout_height="@dimen/bottom_main_menu_height"
         android:elevation="2dp"
         android:background="@drawable/bottom_rectangle"
-        app:itemIconTint="@android:color/white"
+        app:itemIconTint="@color/color_text_bottom_menu"
         app:itemTextColor="@android:color/darker_gray"
+        app:itemRippleColor="@color/active_button_bottom_menu"
+        app:itemTextAppearanceActive="@style/bottom_nav_text_active"
+        app:itemTextAppearanceInactive="@style/bottom_nav_text_no_active"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_main_menu" />
