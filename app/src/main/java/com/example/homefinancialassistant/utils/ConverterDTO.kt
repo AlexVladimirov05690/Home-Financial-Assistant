@@ -5,12 +5,7 @@ import com.example.homefinancialassistant.data.Enity.CurrencyFreaksApiDTO
 import com.example.homefinancialassistant.data.RateCurrency
 
 object ConverterDTO {
-    fun converterDTOToRate(currencyDTO: CurrencyFreaksApiDTO): RateCurrency {
-        val name = "EUR"
-        return RateCurrency(
-            name,
-            currencyDTO.date,
-            currencyDTO.rates[name]?:0.0
-        )
+    fun converterDTOToRate(currencyDTOList: CurrencyFreaksApiDTO): Map<String, Double> {
+        return currencyDTOList.rates
     }
 }

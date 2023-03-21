@@ -3,8 +3,8 @@ package com.example.homefinancialassistant.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.homefinancialassistant.App
-import com.example.homefinancialassistant.domain.Interactor
 import com.example.homefinancialassistant.domain.InteractorNetwork
+import kotlinx.coroutines.*
 import javax.inject.Inject
 
 class ExchangeRatesFragmentViewModel: ViewModel() {
@@ -17,11 +17,29 @@ class ExchangeRatesFragmentViewModel: ViewModel() {
         App.instance.dagger.inject(this)
     }
 
-    val courseDollar: MutableLiveData<Double> by lazy {
+    val courseEuro: MutableLiveData<Double> by lazy {
+        MutableLiveData<Double>()
+    }
+
+    val courseRub: MutableLiveData<Double> by lazy {
+        MutableLiveData<Double>()
+    }
+
+    val courseBtc: MutableLiveData<Double> by lazy {
         MutableLiveData<Double>()
     }
 
     fun updateCourseDollar() {
-        courseDollar.value = interactorNetwork.getRateEuroToDollar()
+
+        val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
+            throwable.printStackTrace()
+        }
+        val scope = CoroutineScope(Job())
+        scope.launch(Dispatchers.IO + coroutineExceptionHandler) {
+            courseEuro.postValue(interactorNetwork.ratesToDollar().getValue("EUR"))
+            courseRub.postValue(interactorNetwork.ratesToDollar().getValue("RUB"))
+            courseBtc.postValue(interactorNetwork.ratesToDollar().getValue("BTC"))
+        }
+
     }
 }

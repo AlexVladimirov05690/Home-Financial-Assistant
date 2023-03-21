@@ -29,8 +29,16 @@ class ExchangeRatesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.courseDollar.observe(viewLifecycleOwner) {
-            binding.course.text = it.toString()
+        viewModel.courseEuro.observe(viewLifecycleOwner) {
+            binding.courseEuro.text = it.toString()
+        }
+
+        viewModel.courseRub.observe(viewLifecycleOwner) {
+            binding.courseRub.text = it.toString()
+        }
+
+        viewModel.courseBtc.observe(viewLifecycleOwner) {
+            binding.courseBtc.text = it.toString()
         }
 
         binding.refreshCourse.setOnClickListener {

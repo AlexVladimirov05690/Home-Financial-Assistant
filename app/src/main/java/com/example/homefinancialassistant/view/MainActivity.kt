@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun initButtons(){
+        binding.bottomMainMenu.itemActiveIndicatorColor
         binding.bottomMainMenu.setOnItemSelectedListener {
             when(it.itemId) {
                 R.id.credit_calculator -> {
