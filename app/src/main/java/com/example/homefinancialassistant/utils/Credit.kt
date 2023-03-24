@@ -1,18 +1,24 @@
 package com.example.homefinancialassistant.utils
 
-
-import java.math.BigDecimal
-import java.math.RoundingMode
+import com.example.homefinancialassistant.App
+import javax.inject.Inject
 import kotlin.math.pow
 
 class Credit {
 
+    @Inject
+    lateinit var mathHelper: MathHelper
+
+    init {
+        App.instance.dagger.inject(this)
+    }
+
     fun monthlyPayment(amount: Double, tern: Double, percent: Double): Double {
-        return rounding(amount * getAnnuityRatio(tern, percent))
+        return mathHelper.rounding(amount * getAnnuityRatio(tern, percent))
     }
 
     fun overpayment(amount: Double, tern: Double, percent: Double): Double {
-        return rounding(monthlyPayment(amount, tern, percent) * tern - amount)
+        return mathHelper.rounding(monthlyPayment(amount, tern, percent) * tern - amount)
     }
 
     private fun getAnnuityRatio(tern: Double, percent: Double): Double {
@@ -31,15 +37,8 @@ class Credit {
             println(difference)
         } while (difference > 0)
 
-        return rounding(iteration)
+        return mathHelper.rounding(iteration)
     }
-
-    private fun rounding(number: Double): Double {
-        return BigDecimal(number).setScale(2, RoundingMode.HALF_UP).toDouble()
-
-    }
-
-
 }
 
 

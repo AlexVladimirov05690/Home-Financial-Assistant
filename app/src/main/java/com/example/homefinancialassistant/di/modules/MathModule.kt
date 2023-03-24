@@ -2,6 +2,7 @@ package com.example.homefinancialassistant.di.modules
 
 import com.example.homefinancialassistant.domain.Interactor
 import com.example.homefinancialassistant.utils.Credit
+import com.example.homefinancialassistant.utils.MathHelper
 import dagger.Module
 import dagger.Provides
 
@@ -13,4 +14,7 @@ class MathModule {
 
     @Provides
     fun provideInteractor() = Interactor()
+
+    @Provides
+    fun provideMathHelper() = MathHelper()
 }
