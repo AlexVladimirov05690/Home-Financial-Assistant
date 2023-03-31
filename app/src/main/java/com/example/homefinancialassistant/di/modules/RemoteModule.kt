@@ -3,7 +3,6 @@ package com.example.homefinancialassistant.di.modules
 import com.example.homefinancialassistant.BuildConfig
 import com.example.homefinancialassistant.data.ApiConstants
 import com.example.homefinancialassistant.data.CurrencyFreaksApi
-import com.example.homefinancialassistant.domain.InteractorNetwork
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

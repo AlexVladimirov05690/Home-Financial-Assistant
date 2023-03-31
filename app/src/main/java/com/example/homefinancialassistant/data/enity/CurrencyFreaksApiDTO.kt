@@ -1,4 +1,4 @@
-package com.example.homefinancialassistant.data.Enity
+package com.example.homefinancialassistant.data.enity
 
 import com.google.gson.annotations.SerializedName
 

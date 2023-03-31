@@ -27,6 +27,5 @@
     <string name="sign_vk">Sign in with VK</string>
     <string name="sign_email">Sign in or register with Email</string>
     <string name="sign_guest">Продолжить, как гость</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="setting">Setting Application</string>
 </resources>

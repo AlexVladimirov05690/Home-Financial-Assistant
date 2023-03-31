@@ -1,6 +1,6 @@
 package com.example.homefinancialassistant.data
 
-import com.example.homefinancialassistant.data.Enity.CurrencyFreaksApiDTO
+import com.example.homefinancialassistant.data.enity.CurrencyFreaksApiDTO
 import retrofit2.http.GET
 import retrofit2.http.Query
 

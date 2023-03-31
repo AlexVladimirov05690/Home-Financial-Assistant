@@ -1,5 +1,6 @@
 package com.example.homefinancialassistant.di
 
+import com.example.homefinancialassistant.di.modules.DatabaseModule
 import com.example.homefinancialassistant.di.modules.DomainModule
 import com.example.homefinancialassistant.di.modules.MathModule
 import com.example.homefinancialassistant.di.modules.RemoteModule
@@ -11,7 +12,7 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [MathModule::class, RemoteModule::class, DomainModule::class])
+@Component(modules = [MathModule::class, RemoteModule::class, DomainModule::class, DatabaseModule::class])
 interface AppComponent {
     fun inject(interactor: Interactor)
     fun inject(creditCalculatorFragmentViewModel: CreditCalculatorFragmentViewModel)
