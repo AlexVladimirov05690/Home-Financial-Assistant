@@ -9,10 +9,14 @@ import com.example.homefinancialassistant.data.SettingProvider
 import com.example.homefinancialassistant.data.repositories.MainRepository
 import com.example.homefinancialassistant.utils.ConverterDTO
 import com.example.homefinancialassistant.utils.Credit
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.*
 import javax.inject.Inject
 
-class Interactor(val retrofitService: CurrencyFreaksApi, val mainRepository: MainRepository, val settingProvider: SettingProvider) {
+class Interactor(
+    val retrofitService: CurrencyFreaksApi,
+    val mainRepository: MainRepository,
+    val settingProvider: SettingProvider
+) {
     @Inject
     lateinit var credit: Credit
 
@@ -31,25 +35,41 @@ class Interactor(val retrofitService: CurrencyFreaksApi, val mainRepository: Mai
     fun getPercentBack(amount: Double, tern: Double, monthlyPayment: Double): Double {
         return credit.getPercent(amount, tern, monthlyPayment)
     }
-    
 
-    suspend fun ratesFromDb(): Flow<List<RateCurrency>> {
-        return if(settingProvider.dateCompare(Calendar.getInstance())) {
+
+    suspend fun ratesFromDb(): List<RateCurrency> {
+        return if (settingProvider.dateCompare(Calendar.getInstance())) {
             mainRepository.getAllFromRateCurrencyDb()
         } else {
-            ratesFromApi()
+            val scope = CoroutineScope(Job())
+            val result = scope.async {
+                ratesFromApi()
+            }
+            result.await()
             mainRepository.getAllFromRateCurrencyDb()
         }
     }
 
     private suspend fun ratesFromApi() {
-        settingProvider.changeDate(Calendar.getInstance()) //изменение даты последнего запроса
         val listRate = mutableListOf<String>()
         listRate.add(0, "EUR")
         listRate.add(1, "RUB")
         listRate.add(2, "BTC")
-        val resultFromNetwork = retrofitService.getRate(API.KEY, listRate)
-        mainRepository.insertAllToRateCurrencyDb(ConverterDTO.converterDTOToRate(resultFromNetwork))
+        val scope = CoroutineScope(Job())
+        println("Запрос в сеть")
+        scope.launch(Dispatchers.IO) {
+            try {
+                mainRepository.insertAllToRateCurrencyDb(
+                    ConverterDTO.converterDTOToRate(
+                        retrofitService.getRate(API.KEY, listRate)
+                    )
+                )
+                println("Получен ответ от сервера и записаны данные в базу")
+                settingProvider.changeDate(Calendar.getInstance())
+            } catch (e: Exception) {
+                println(e)
+            }
+        }
     }
 
 }

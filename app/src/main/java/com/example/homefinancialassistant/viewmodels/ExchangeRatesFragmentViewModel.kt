@@ -24,7 +24,7 @@ class ExchangeRatesFragmentViewModel : ViewModel() {
         MutableLiveData<Double>()
     }
 
-    val courseRub: MutableLiveData<Double> by lazy {
+    val courseDollar: MutableLiveData<Double> by lazy {
         MutableLiveData<Double>()
     }
 
@@ -40,18 +40,26 @@ class ExchangeRatesFragmentViewModel : ViewModel() {
         }
         val scope = CoroutineScope(Job())
         scope.launch(Dispatchers.IO + coroutineExceptionHandler) {
-            interactor.ratesFromDb().collect {list->
-                withContext(Dispatchers.Main) {
-                    list.forEach {
-                        mapFromDb[it.currency] = it.rate
-                        println(it.currency + it.rate.toString())
-                        println(mapFromDb[it.currency])
-                    }
-                    courseRub.postValue(mathHelper.rounding(mapFromDb["RUB"] ?: 9999.0))
-                    courseEuro.postValue(mathHelper.rounding(mapFromDb["EUR"] ?: 9999.0))
-                    courseBtc.postValue(mathHelper.rounding(mapFromDb["BTC"] ?: 9999.0))
+            println("Запрос данных")
+            val resultDb = async {
+                interactor.ratesFromDb().forEach {
+                    mapFromDb[it.currency] = it.rate
                 }
             }
+            resultDb.await()
+            println("Начало отображения данных")
+            courseDollar.postValue(fromMap(mapFromDb, "RUB"))
+            courseEuro.postValue(fromMap(mapFromDb, "EUR"))
+            courseBtc.postValue(fromMap(mapFromDb, "BTC"))
         }
     }
+
+    private fun fromMap(map: Map<String, Double>, key: String) : Double {
+        return if(key == "RUB") {
+            mathHelper.rounding(map[key] ?: 9999.0)
+        } else {
+            mathHelper.rounding((map["RUB"] ?: 9999.0) / (map[key] ?: 9999.0))
+        }
+    }
+
 }

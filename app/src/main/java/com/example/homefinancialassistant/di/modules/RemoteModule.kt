@@ -22,7 +22,7 @@ class RemoteModule {
         .readTimeout(ApiConstants.TIME_DELAY_SECOND, TimeUnit.SECONDS)
         .addInterceptor(HttpLoggingInterceptor().apply {
             if (BuildConfig.DEBUG) {
-                level = HttpLoggingInterceptor.Level.BASIC
+                level = HttpLoggingInterceptor.Level.BODY
             }
         })
         .build()

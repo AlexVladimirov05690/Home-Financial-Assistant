@@ -3,11 +3,11 @@ package com.example.homefinancialassistant.data.repositories
 import com.example.homefinancialassistant.data.RateCurrency
 import com.example.homefinancialassistant.data.dao.RateCurrencyDao
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.Flow
 
 class MainRepository(private val rateCurrencyDao: RateCurrencyDao) {
 
-    fun getAllFromRateCurrencyDb(): Flow<List<RateCurrency>> {
+    suspend fun getAllFromRateCurrencyDb(): List<RateCurrency> {
+        println("Запрос в базу данных")
         return rateCurrencyDao.getAll()
     }
 

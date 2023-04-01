@@ -28,4 +28,8 @@
     <string name="sign_email">Sign in or register with Email</string>
     <string name="sign_guest">Продолжить, как гость</string>
     <string name="setting">Setting Application</string>
+    <string name="refresh">Обновить</string>
+    <string name="course_dollar">Курс доллара: </string>
+    <string name="course_euro">Курс евро: </string>
+    <string name="course_btc">Курс BTC: </string>
 </resources>

@@ -30,8 +30,8 @@ class ExchangeRatesFragment : Fragment() {
             binding.courseEuro.text = it.toString()
         }
 
-        viewModel.courseRub.observe(viewLifecycleOwner) {
-            binding.courseRub.text = it.toString()
+        viewModel.courseDollar.observe(viewLifecycleOwner) {
+            binding.courseDollar.text = it.toString()
         }
 
         viewModel.courseBtc.observe(viewLifecycleOwner) {
