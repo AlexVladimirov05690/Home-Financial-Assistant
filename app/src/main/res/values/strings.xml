@@ -32,4 +32,10 @@
     <string name="course_dollar">Курс доллара: </string>
     <string name="course_euro">Курс евро: </string>
     <string name="course_btc">Курс BTC: </string>
+    <string name="add_consumption">Добавление расхода </string>
+    <string name="add_category">Введите категорию </string>
+    <string name="add_price">Введите цену </string>
+    <string name="add_description">Введите описание </string>
+    <string name="add_consumption_button">Добавить </string>
+
 </resources>

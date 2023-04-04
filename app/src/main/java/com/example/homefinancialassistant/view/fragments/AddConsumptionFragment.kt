@@ -1,0 +1,47 @@
+package com.example.homefinancialassistant.view.fragments
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.example.homefinancialassistant.R
+import com.example.homefinancialassistant.databinding.FragmentAddConsumptionBinding
+import com.example.homefinancialassistant.viewmodels.AddConsumptionFragmentViewModel
+
+
+class AddConsumptionFragment : Fragment() {
+
+    private lateinit var binding: FragmentAddConsumptionBinding
+    private val viewModel: AddConsumptionFragmentViewModel by viewModels()
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentAddConsumptionBinding.inflate(inflater)
+        return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.enterDescription.setText(R.string.add_description)
+        binding.enterPrice.setText("0.0")
+        binding.enterCategory.setText(R.string.add_category)
+        initButtons()
+    }
+
+    private fun initButtons() {
+        binding.addConsumption.setOnClickListener {
+            viewModel.category.value = binding.enterCategory.text.toString()
+            viewModel.description.value = binding.enterDescription.text.toString()
+            viewModel.price.value = (binding.enterPrice.text.toString()).toDouble()
+            viewModel.addConsumption()
+        }
+    }
+}

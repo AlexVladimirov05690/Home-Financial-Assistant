@@ -6,10 +6,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.homefinancialassistant.R
 import com.example.homefinancialassistant.databinding.ActivityMainBinding
-import com.example.homefinancialassistant.view.fragments.AuthorizationFragment
-import com.example.homefinancialassistant.view.fragments.CreditCalculatorFragment
-import com.example.homefinancialassistant.view.fragments.ExchangeRatesFragment
-import com.example.homefinancialassistant.view.fragments.HomeFragment
+import com.example.homefinancialassistant.view.fragments.*
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -44,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.main -> {
                     val tag = "home"
                     val fragment = checkFragmentExistence(tag)
-                    changeFragment(fragment?: HomeFragment(), tag)
+                    changeFragment(fragment?: AddConsumptionFragment(), tag)
                     true
                 }
                 else -> false

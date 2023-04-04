@@ -1,6 +1,5 @@
 package com.example.homefinancialassistant.domain
 
-import android.icu.util.Calendar
 import com.example.homefinancialassistant.API
 import com.example.homefinancialassistant.App
 import com.example.homefinancialassistant.data.CurrencyFreaksApi
@@ -10,6 +9,7 @@ import com.example.homefinancialassistant.data.repositories.MainRepository
 import com.example.homefinancialassistant.utils.ConverterDTO
 import com.example.homefinancialassistant.utils.Credit
 import kotlinx.coroutines.*
+import java.util.*
 import javax.inject.Inject
 
 class Interactor(
@@ -40,6 +40,7 @@ class Interactor(
     suspend fun ratesFromDb(): List<RateCurrency> {
         return if (settingProvider.dateCompare(Calendar.getInstance())) {
             mainRepository.getAllFromRateCurrencyDb()
+
         } else {
             val scope = CoroutineScope(Job())
             val result = scope.async {
