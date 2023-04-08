@@ -41,6 +41,12 @@ class MainActivity : AppCompatActivity() {
                 R.id.main -> {
                     val tag = "home"
                     val fragment = checkFragmentExistence(tag)
+                    changeFragment(fragment?: HomeFragment(), tag)
+                    true
+                }
+                R.id.expense_journal -> {
+                    val tag = "expense_journal"
+                    val fragment = checkFragmentExistence(tag)
                     changeFragment(fragment?: AddConsumptionFragment(), tag)
                     true
                 }

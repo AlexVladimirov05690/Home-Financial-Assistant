@@ -23,5 +23,12 @@
         app:showAsAction="ifRoom"
         />
 
+    <item
+        android:id="@+id/expense_journal"
+        android:icon="@drawable/baseline_auto_stories_24"
+        android:title="@string/expense_journal"
+        app:showAsAction="ifRoom"
+        />
+
 
 </menu>

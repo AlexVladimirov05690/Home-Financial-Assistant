@@ -37,5 +37,6 @@
     <string name="add_price">Введите цену </string>
     <string name="add_description">Введите описание </string>
     <string name="add_consumption_button">Добавить </string>
+    <string name="expense_journal">Журнал расходов </string>
 
 </resources>
