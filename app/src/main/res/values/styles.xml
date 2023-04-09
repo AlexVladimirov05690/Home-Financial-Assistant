@@ -48,4 +48,8 @@
         <item name="android:textColorHighlight">@color/color_text_bottom_menu</item>
     </style>
 
+    <declare-styleable name="CostChartView">
+        <attr name="percent" format="integer" />
+    </declare-styleable>
+
 </resources>
