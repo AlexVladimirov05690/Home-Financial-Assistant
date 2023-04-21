@@ -6,13 +6,28 @@
     tools:context=".view.fragments.ExpenseJournalFragment"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <FrameLayout
-        android:id="@+id/fragment_place_expense_journal"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/consumptionRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/add_consumption_fragment_height"
-        app:layout_constraintBottom_toBottomOf = "parent"
-        app:layout_constraintTop_toTopOf = "parent"
-        >
-    </FrameLayout>
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:listitem="@layout/consumption_item"
+        />
+
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addConsumptionFabButton"
+        android:layout_width="@dimen/fab_button"
+        android:layout_height="@dimen/fab_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/fab_button_margin"
+        android:layout_marginBottom="@dimen/fab_button_margin"
+        android:contentDescription="@string/add_button_desc"
+        android:src="@drawable/baseline_add_shopping_cart_24"
+        android:backgroundTint="@color/color_vk"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

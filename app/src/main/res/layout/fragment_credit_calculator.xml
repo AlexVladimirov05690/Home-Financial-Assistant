@@ -29,6 +29,7 @@
             android:layout_marginTop="@dimen/spacing_between_elements"
             app:boxStrokeColor="@color/secondary_color"
             app:endIconMode="clear_text"
+            app:hintEnabled="false"
             app:layout_constraintTop_toBottomOf="@+id/top_headline">
 
             <com.google.android.material.textfield.TextInputEditText

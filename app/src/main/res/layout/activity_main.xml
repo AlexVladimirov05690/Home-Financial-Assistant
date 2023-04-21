@@ -13,6 +13,15 @@
         app:layout_constraintBottom_toTopOf="@+id/bottom_main_menu"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <FrameLayout
+        android:id="@+id/fragment_place_expense_journal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/add_consumption_fragment_height"
+        app:layout_constraintBottom_toBottomOf = "parent"
+        app:layout_constraintTop_toTopOf = "parent"
+        >
+    </FrameLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_main_menu"
         android:layout_width="match_parent"

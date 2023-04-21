@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -29,13 +29,13 @@
             android:layout_marginTop="@dimen/spacing_between_elements"
             app:boxStrokeColor="@color/secondary_color"
             app:endIconMode="clear_text"
+            android:hint="@string/add_category"
             app:layout_constraintTop_toBottomOf="@+id/top_headline_consumption">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/enter_category"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_edit_text"
-                android:hint="@string/add_category"
                 android:inputType="text"
                 android:theme="@style/Field_credit" />
 
@@ -48,13 +48,13 @@
             android:layout_marginTop="@dimen/spacing_between_elements"
             app:boxStrokeColor="@color/secondary_color"
             app:endIconMode="clear_text"
+            android:hint="@string/add_price"
             app:layout_constraintTop_toBottomOf="@+id/enter_category_container">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/enter_price"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_edit_text"
-                android:hint="@string/add_price"
                 android:inputType="numberDecimal"
                 android:theme="@style/Field_credit" />
 
@@ -65,6 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_between_elements"
+            android:hint="@string/add_description"
             app:boxStrokeColor="@color/secondary_color"
             app:endIconMode="clear_text"
             app:layout_constraintTop_toBottomOf="@+id/enter_price_container">
@@ -73,18 +74,20 @@
                 android:id="@+id/enter_description"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_edit_text"
-                android:hint="@string/add_description"
                 android:inputType="text"
                 android:theme="@style/Field_credit"
-                tools:ignore="DuplicateClickableBoundsCheck,DuplicateClickableBoundsCheck,DuplicateClickableBoundsCheck" />
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <Spinner
-            android:id="@+id/categories_spinner"
-            android:layout_width="match_parent"
+            android:id="@+id/spinnerCategories"
+            android:layout_width="0dp"
             android:layout_height="@dimen/spinner_height"
-            app:layout_constraintBottom_toBottomOf="@+id/enter_category_container" />
+            android:layout_marginEnd="40dp"
+            android:contentDescription="@string/spinnerText"
+            app:layout_constraintBottom_toBottomOf="@+id/enter_category_container"
+            app:layout_constraintEnd_toEndOf="@+id/enter_description_container" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/button_container"
@@ -95,12 +98,22 @@
             app:layout_constraintTop_toBottomOf="@+id/enter_description_container">
 
             <Button
-                android:id="@+id/add_consumption"
+                android:id="@+id/btnAddConsumption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
                 android:layout_weight="1"
-                android:text="@string/add_consumption_button"
+                android:text="@string/addConsumptionButton"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_weight="1"
+                android:text="@string/buttonCancel"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -108,4 +121,4 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
