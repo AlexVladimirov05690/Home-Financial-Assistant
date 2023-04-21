@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.fragments.CreditCalculatorFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/top_headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/credit_params"
+            android:theme="@style/HeadLine1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/enter_amount_of_credit_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_between_elements"
+            app:boxStrokeColor="@color/secondary_color"
+            app:endIconMode="clear_text"
+            app:layout_constraintTop_toBottomOf="@+id/top_headline">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:hint="@string/enter_amount_of_credit"
+                android:id="@+id/enter_amount_of_credit"
+                android:layout_width="match_parent"
+                android:theme="@style/Field_credit"
+                android:layout_height="@dimen/height_edit_text"
+                android:inputType="numberDecimal"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/enter_tern_of_credit_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_between_elements"
+            app:boxStrokeColor="@color/secondary_color"
+            app:endIconMode="clear_text"
+            app:layout_constraintTop_toBottomOf="@+id/enter_amount_of_credit_container">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:hint="@string/enter_tern_of_credit"
+                android:id="@+id/enter_tern_of_credit"
+                android:layout_width="match_parent"
+                android:theme="@style/Field_credit"
+                android:layout_height="@dimen/height_edit_text"
+                android:inputType="numberDecimal"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/enter_percent_of_credit_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_between_elements"
+            app:boxStrokeColor="@color/secondary_color"
+            app:endIconMode="clear_text"
+            app:layout_constraintTop_toBottomOf="@+id/enter_tern_of_credit_container">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/enter_percent_of_credit"
+                android:hint="@string/enter_percent_of_credit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_edit_text"
+                android:theme="@style/Field_credit"
+                android:inputType="numberDecimal"
+                tools:ignore="DuplicateClickableBoundsCheck,DuplicateClickableBoundsCheck,DuplicateClickableBoundsCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/monthly_payment_container_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_between_elements"
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/secondary_color"
+            app:endIconMode="clear_text"
+            app:layout_constraintTop_toBottomOf="@+id/enter_tern_of_credit_container"
+            android:visibility="invisible">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:hint="@string/monthly_payment_back"
+                android:id="@+id/monthly_payment_back"
+                android:layout_width="match_parent"
+                android:theme="@style/Field_credit"
+                android:layout_height="@dimen/height_edit_text"
+                android:inputType="numberDecimal"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toTopOf="@+id/button_container">
+
+            <TextView
+                android:id="@+id/monthly_payment_field"
+                android:layout_width="@dimen/bottom_textview_on_main_weight"
+                android:layout_height="@dimen/bottom_textview_on_main_height"
+                android:text="@string/monthly_payment"
+                android:theme="@style/Field_credit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/overpay_field"
+                android:layout_width="@dimen/bottom_textview_on_main_weight"
+                android:layout_height="@dimen/bottom_textview_on_main_height"
+                android:text="@string/overpayment"
+                android:theme="@style/Field_credit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/monthly_payment_field" />
+
+            <TextView
+                android:id="@+id/monthly_payment_value"
+                android:layout_width="@dimen/bottom_textview_on_main_weight"
+                android:layout_height="@dimen/bottom_textview_on_main_height"
+                android:theme="@style/Field_credit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="@string/null_number"/>
+
+            <TextView
+                android:id="@+id/overpay_value"
+                android:layout_width="@dimen/bottom_textview_on_main_weight"
+                android:layout_height="@dimen/bottom_textview_on_main_height"
+                android:theme="@style/Field_credit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/monthly_payment_value"
+                android:text="@string/null_number"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/button_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+
+            <Button
+                android:id="@+id/calculation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_weight="1"
+                android:text="@string/calculation"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/switch_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="4dp"
+                android:layout_weight="3"
+                android:text="@string/switch_back_calculator"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
