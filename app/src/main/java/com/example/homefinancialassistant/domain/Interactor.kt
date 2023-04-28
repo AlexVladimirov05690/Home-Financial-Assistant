@@ -2,13 +2,15 @@ package com.example.homefinancialassistant.domain
 
 import com.example.homefinancialassistant.API
 import com.example.homefinancialassistant.App
+import com.example.homefinancialassistant.data.Consumption
 import com.example.homefinancialassistant.data.CurrencyFreaksApi
-import com.example.homefinancialassistant.data.RateCurrency
+import com.example.homefinancialassistant.data.RateCurrencyEntity
 import com.example.homefinancialassistant.data.SettingProvider
 import com.example.homefinancialassistant.data.repositories.MainRepository
 import com.example.homefinancialassistant.utils.ConverterDTO
 import com.example.homefinancialassistant.utils.Credit
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.Flow
 import java.util.*
 import javax.inject.Inject
 
@@ -37,7 +39,7 @@ class Interactor(
     }
 
 
-    suspend fun ratesFromDb(): List<RateCurrency> {
+    suspend fun ratesFromDb(): List<RateCurrencyEntity> {
         return if (settingProvider.dateCompare(Calendar.getInstance())) {
             mainRepository.getAllFromRateCurrencyDb()
 
@@ -71,6 +73,14 @@ class Interactor(
                 println(e)
             }
         }
+    }
+
+    fun consumptionFromDb(): Flow<List<Consumption>> {
+        return mainRepository.getAllConsumption()
+    }
+
+    fun deleteConsumptionFromDb(consumption: Consumption) {
+        mainRepository.deleteConsumption(consumption)
     }
 
 }

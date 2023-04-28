@@ -10,7 +10,6 @@ class Converters {
         val sdf = SimpleDateFormat(FORMAT_DATE, Locale.ROOT)
         val date = calendar.time
         return sdf.format(date)
-
     }
 
     @TypeConverter
@@ -23,6 +22,6 @@ class Converters {
     }
 
     companion object {
-        const val FORMAT_DATE = "dd MMM yyyy hh : mm"
+        const val FORMAT_DATE = "dd MM yyyy hh : mm"
     }
 }

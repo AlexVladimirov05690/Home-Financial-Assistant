@@ -40,6 +40,7 @@ class AddConsumptionFragment : Fragment() {
             viewModel.description.value = binding.enterDescription.text.toString()
             viewModel.price.value = (binding.enterPrice.text.toString()).toDouble()
             viewModel.addConsumption()
+            (activity as MainActivity).closeFragment(this)
         }
         binding.btnCancel.setOnClickListener {
             (activity as MainActivity).closeFragment(this)

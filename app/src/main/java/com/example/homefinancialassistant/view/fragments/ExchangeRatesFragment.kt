@@ -39,7 +39,6 @@ class ExchangeRatesFragment : Fragment() {
         }
 
         binding.refreshCourse.setOnClickListener {
-            //viewModel.updateCourseDollar()
             viewModel.updateRateCurrencyFromDb()
         }
 

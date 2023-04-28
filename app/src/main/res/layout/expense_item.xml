@@ -21,23 +21,12 @@
             tools:src="@tools:sample/avatars"/>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/item_category"
+            android:id="@+id/itemCategory"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:textSize="20sp"
             android:textStyle="bold"
-            />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/buttonDelete"
-            android:layout_width="@dimen/consumption_item_delete_button_weight"
-            android:layout_height="@dimen/consumption_item_delete_button_height"
-            android:background="@drawable/delete"
-            android:layout_gravity="end"
-            android:layout_marginTop="10dp"
-            android:contentDescription="@string/delete_button_desc"
-
             />
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -50,6 +39,7 @@
                 >
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/expenseData"
                     android:layout_width="@dimen/consumption_item_text_weight"
                     android:layout_height="match_parent"
                     android:text="@string/anything_text"
@@ -58,6 +48,7 @@
                     />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/expensePrice"
                     android:layout_width="@dimen/consumption_item_text_weight"
                     android:layout_height="match_parent"
                     android:text="@string/anything_text"

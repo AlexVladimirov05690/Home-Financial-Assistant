@@ -6,6 +6,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.homefinancialassistant.R
+import com.example.homefinancialassistant.data.Consumption
 import com.example.homefinancialassistant.databinding.ActivityMainBinding
 import com.example.homefinancialassistant.view.fragments.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -19,7 +20,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -29,12 +29,11 @@ class MainActivity : AppCompatActivity() {
         onBackPressedDispatcher.addCallback(this, onBackPressedCallBack)
     }
 
-
     private fun initButtons() {
         binding.bottomMainMenu.itemActiveIndicatorColor
         binding.bottomMainMenu.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.credit_calculator -> {
+                R.id.creditCalculator -> {
                     val tag = "credit_calculator"
                     val fragment = checkFragmentExistence(tag)
                     changeFragment(fragment ?: CreditCalculatorFragment(), tag)
@@ -52,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                     changeFragment(fragment ?: HomeFragment(), tag)
                     true
                 }
-                R.id.expense_journal -> {
+                R.id.expenseJournal -> {
                     val tag = "expense_journal"
                     val fragment = checkFragmentExistence(tag)
                     changeFragment(fragment ?: ExpenseJournalFragment(), tag)
@@ -100,6 +99,19 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
+    fun launchConsumptionFragment(consumption: Consumption) {
+        val bundle = Bundle()
+        bundle.putParcelable("consumption", consumption)
+        val fragment = ConsumptionFragment()
+        fragment.arguments = bundle
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(binding.fragmentPlaceExpenseJournal.id, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
     private fun showAlertDialog() {
 
         MaterialAlertDialogBuilder(this)
@@ -112,6 +124,4 @@ class MainActivity : AppCompatActivity() {
             .show()
 
     }
-
-
 }

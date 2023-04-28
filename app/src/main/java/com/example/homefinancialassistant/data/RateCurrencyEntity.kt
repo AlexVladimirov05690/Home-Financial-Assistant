@@ -6,7 +6,7 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "rates_table", indices = [Index(value = ["currency"], unique = true)])
-data class RateCurrency(
+data class RateCurrencyEntity(
     @PrimaryKey
     val currency: String,
     @ColumnInfo(name = "date")

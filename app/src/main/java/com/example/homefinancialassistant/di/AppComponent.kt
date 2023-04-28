@@ -7,8 +7,10 @@ import com.example.homefinancialassistant.di.modules.RemoteModule
 import com.example.homefinancialassistant.domain.Interactor
 import com.example.homefinancialassistant.utils.Credit
 import com.example.homefinancialassistant.viewmodels.AddConsumptionFragmentViewModel
+import com.example.homefinancialassistant.viewmodels.ConsumptionFragmentViewModel
 import com.example.homefinancialassistant.viewmodels.CreditCalculatorFragmentViewModel
 import com.example.homefinancialassistant.viewmodels.ExchangeRatesFragmentViewModel
+import com.example.homefinancialassistant.viewmodels.ExpenseJournalFragmentViewModel
 import dagger.Component
 import javax.inject.Singleton
 
@@ -20,4 +22,6 @@ interface AppComponent {
     fun inject(exchangeRatesFragmentViewModel: ExchangeRatesFragmentViewModel)
     fun inject(credit: Credit)
     fun inject(addConsumptionFragmentViewModel: AddConsumptionFragmentViewModel)
+    fun inject(expenseJournalFragmentViewModel: ExpenseJournalFragmentViewModel)
+    fun inject(consumptionFragmentViewModel: ConsumptionFragmentViewModel)
 }

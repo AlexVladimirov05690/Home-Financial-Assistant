@@ -32,7 +32,7 @@ class CreditCalculatorFragment : Fragment() {
 
     private fun initButtons(){
 
-        binding.calculation.setOnClickListener {
+        binding.btnCalculation.setOnClickListener {
             if(change == 0) {
                 viewModel.amount.value = textToDouble(binding.enterAmountOfCreditContainer.editText?.text.toString())
                 viewModel.tern.value = textToDouble(binding.enterTernOfCreditContainer.editText?.text.toString())
@@ -45,7 +45,7 @@ class CreditCalculatorFragment : Fragment() {
                 viewModel.calculationBack()
             }
         }
-        binding.switchButton.setOnClickListener {
+        binding.btnSwitchButton.setOnClickListener {
             changeId(change)
             initFields(change)
         }

@@ -7,14 +7,14 @@
     tools:context=".view.MainActivity">
 
     <FrameLayout
-        android:id="@+id/fragment_place"
+        android:id="@+id/fragmentPlace"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_main_menu"
+        app:layout_constraintBottom_toTopOf="@+id/bottomMainMenu"
         app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
-        android:id="@+id/fragment_place_expense_journal"
+        android:id="@+id/fragmentPlaceExpenseJournal"
         android:layout_width="match_parent"
         android:layout_height="@dimen/add_consumption_fragment_height"
         app:layout_constraintBottom_toBottomOf = "parent"
@@ -23,7 +23,7 @@
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_main_menu"
+        android:id="@+id/bottomMainMenu"
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottom_main_menu_height"
         android:elevation="2dp"

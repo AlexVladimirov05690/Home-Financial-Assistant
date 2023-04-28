@@ -9,10 +9,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:background="@color/white">
 
         <TextView
-            android:id="@+id/top_headline_consumption"
+            android:id="@+id/topHeadlineConsumption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/add_consumption"
@@ -23,17 +24,17 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/enter_category_container"
+            android:id="@+id/enterCategoryContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_between_elements"
             app:boxStrokeColor="@color/secondary_color"
             app:endIconMode="clear_text"
             android:hint="@string/add_category"
-            app:layout_constraintTop_toBottomOf="@+id/top_headline_consumption">
+            app:layout_constraintTop_toBottomOf="@+id/topHeadlineConsumption">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/enter_category"
+                android:id="@+id/enterCategory"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_edit_text"
                 android:inputType="text"
@@ -42,17 +43,17 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/enter_price_container"
+            android:id="@+id/enterPriceContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_between_elements"
             app:boxStrokeColor="@color/secondary_color"
             app:endIconMode="clear_text"
             android:hint="@string/add_price"
-            app:layout_constraintTop_toBottomOf="@+id/enter_category_container">
+            app:layout_constraintTop_toBottomOf="@+id/enterCategoryContainer">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/enter_price"
+                android:id="@+id/enterPrice"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_edit_text"
                 android:inputType="numberDecimal"
@@ -61,17 +62,17 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/enter_description_container"
+            android:id="@+id/enterDescriptionContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_between_elements"
             android:hint="@string/add_description"
             app:boxStrokeColor="@color/secondary_color"
             app:endIconMode="clear_text"
-            app:layout_constraintTop_toBottomOf="@+id/enter_price_container">
+            app:layout_constraintTop_toBottomOf="@+id/enterPriceContainer">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/enter_description"
+                android:id="@+id/enterDescription"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_edit_text"
                 android:inputType="text"
@@ -86,16 +87,16 @@
             android:layout_height="@dimen/spinner_height"
             android:layout_marginEnd="40dp"
             android:contentDescription="@string/spinnerText"
-            app:layout_constraintBottom_toBottomOf="@+id/enter_category_container"
-            app:layout_constraintEnd_toEndOf="@+id/enter_description_container" />
+            app:layout_constraintBottom_toBottomOf="@+id/enterCategoryContainer"
+            app:layout_constraintEnd_toEndOf="@+id/enterDescriptionContainer" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/button_container"
+            android:id="@+id/buttonContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/enter_description_container">
+            app:layout_constraintTop_toBottomOf="@+id/enterDescriptionContainer">
 
             <Button
                 android:id="@+id/btnAddConsumption"

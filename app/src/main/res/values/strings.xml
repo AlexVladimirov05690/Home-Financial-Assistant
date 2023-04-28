@@ -44,8 +44,13 @@
     <string name="anything_text">anything text</string>
     <string name="anything_long_text">Some long text, for example, a description of spending</string>
     <string name="delete_button_desc">Удаляет текущую запись</string>
+    <string name="edit_button_desc">Редактировать текущую запись</string>
     <string name="add_button_desc">Добавление записи</string>
     <string name="buttonCancel">Отмена</string>
+    <string name="category">Категория</string>
+    <string name="date">Дата</string>
+    <string name="descConsumption">Описание траты</string>
+    <string name="price">Цена</string>
 
 
 </resources>
