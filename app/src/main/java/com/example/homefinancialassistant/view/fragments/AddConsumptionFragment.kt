@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.homefinancialassistant.R
 import com.example.homefinancialassistant.databinding.FragmentAddConsumptionBinding
 import com.example.homefinancialassistant.view.MainActivity
 import com.example.homefinancialassistant.viewmodels.AddConsumptionFragmentViewModel
@@ -28,9 +27,6 @@ class AddConsumptionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.enterDescription.setText(R.string.add_description)
-        binding.enterPrice.setText("0.0")
-        binding.enterCategory.setText(R.string.add_category)
         initButtons()
     }
 

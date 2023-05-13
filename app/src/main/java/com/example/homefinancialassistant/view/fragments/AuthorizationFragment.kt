@@ -25,9 +25,7 @@ class AuthorizationFragment: Fragment() {
         binding.signGuest.setOnClickListener {
             activity?.let {
                 (activity as MainActivity).binding.bottomMainMenu.isVisible = true
-                (activity as MainActivity).closeFragment(this)
-//                (it as MainActivity).changeFragment(fragment = HomeFragment(), "home")
-
+                (activity as MainActivity).showHomeFragment()
             }
         }
     }

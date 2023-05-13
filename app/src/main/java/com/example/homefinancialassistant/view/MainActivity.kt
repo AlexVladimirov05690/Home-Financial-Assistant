@@ -92,6 +92,13 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
+    fun showHomeFragment() {
+        val tag = "home"
+        val fragment = checkFragmentExistence(tag)
+        changeFragment(fragment ?: HomeFragment(), tag)
+
+    }
+
     fun closeFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()

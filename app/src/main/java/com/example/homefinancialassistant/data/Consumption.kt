@@ -15,7 +15,7 @@ data class Consumption(
     @ColumnInfo(name = "date")
     val date: Calendar,
     @ColumnInfo(name = "category")
-    val category: String,
+    var category: String,
     @ColumnInfo(name = "price")
     val price: Double,
     @ColumnInfo(name = "description")
