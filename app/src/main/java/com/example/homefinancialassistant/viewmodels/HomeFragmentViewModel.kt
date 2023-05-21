@@ -1,21 +1,23 @@
 package com.example.homefinancialassistant.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.homefinancialassistant.App
 import com.example.homefinancialassistant.domain.Interactor
+import com.example.homefinancialassistant.utils.MathHelper
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
 import javax.inject.Inject
 
 class HomeFragmentViewModel : ViewModel() {
-    val totalPrice: Flow<Double>
-
+    private val totalPrice: Flow<Double>
 
     @Inject
     lateinit var interactor: Interactor
+
+    @Inject
+    lateinit var mathHelper: MathHelper
 
 
     init {
@@ -30,7 +32,6 @@ class HomeFragmentViewModel : ViewModel() {
             resultList.sort()
             resultList.distinct()
             println("!!!$resultList")
-            Log.e("!!!", "закончено формирование списка категорий")
             deleteDublicate(resultList)
         }
 
@@ -60,7 +61,7 @@ class HomeFragmentViewModel : ViewModel() {
     suspend fun consumptionToMap(): Map<String, Float> {
         val listCategory = getUniqueCategoryFromDb()
         val mapResult = mutableMapOf<String, Float>()
-        val priceAll = totalPrice.first()
+        val priceAll = totalPrice.firstOrNull() ?: 0.0
         val result = viewModelScope.async {
             listCategory.forEach { category ->
                 mapResult[category] = percentToAngle(toPercent(categoryPrice(category), priceAll))
@@ -83,11 +84,19 @@ class HomeFragmentViewModel : ViewModel() {
     }
 
     private fun toPercent(price: Double, totalPrice: Double): Float {
-        return (price / totalPrice * 100).toFloat()
+        return mathHelper.rounding((price / totalPrice * 100).toFloat())
     }
 
     private fun percentToAngle(percent: Float): Float {
         return percent / 100 * 360
+    }
+
+    suspend fun getTotalConsumptionPrice(): Double {
+        val resultFromDb = viewModelScope.async {
+            val allPrice: Double = mathHelper.rounding(totalPrice.firstOrNull() ?: 0.0)
+            allPrice
+        }
+        return resultFromDb.await()
     }
 
 

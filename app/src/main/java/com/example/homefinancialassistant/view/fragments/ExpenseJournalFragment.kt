@@ -47,7 +47,6 @@ class ExpenseJournalFragment : Fragment() {
                 }
             }
         }
-
     }
 
     private fun initButtons() {

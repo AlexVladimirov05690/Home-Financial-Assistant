@@ -20,6 +20,7 @@
     <dimen name="consumption_item_delete_button_height">55dp</dimen>
     <dimen name="fab_button">55dp</dimen>
     <dimen name="fab_button_margin">30dp</dimen>
+    <dimen name="weight_and_height_custom_view">300dp</dimen>
 
 
 </resources>

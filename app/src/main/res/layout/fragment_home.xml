@@ -18,12 +18,11 @@
 
     <com.example.homefinancialassistant.view.customview.CostChartView
         android:id="@+id/costChartView"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_width="@dimen/weight_and_height_custom_view"
+        android:layout_height="@dimen/weight_and_height_custom_view"
         android:layout_marginTop="20dp"
         app:layout_constraintBottom_toTopOf="@+id/textViewContainer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/topHomeHeadline"
         app:percent="100" />
@@ -34,20 +33,30 @@
         android:layout_height="400dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/costChartView">
-        <TextView
-            android:id="@+id/text"
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/consumptionRecyclerViewHome"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            tools:listitem="@layout/category_colors_item"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-
-
-
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:background="@drawable/button_sign"
+        android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/costChartView"
+        app:layout_constraintEnd_toEndOf="@+id/costChartView"
+        app:layout_constraintStart_toStartOf="@+id/costChartView"
+        app:layout_constraintTop_toTopOf="@+id/costChartView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

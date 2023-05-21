@@ -8,6 +8,7 @@ import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
 import com.example.homefinancialassistant.R
+import com.example.homefinancialassistant.data.Category
 import kotlin.math.min
 
 class CostChartView @JvmOverloads constructor(
@@ -44,8 +45,9 @@ class CostChartView @JvmOverloads constructor(
         "#f81cf9"
     )
 
-    private var map = mapOf("Еда" to 52f, "Квартплата" to 100f, "Прочее" to 108f, "Автомобиль" to 100f)
-    private var list = listOf("Еда", "Квартплата", "Прочее", "Автомобиль")
+    private var map = mapOf<String, Float>()
+    private var list = emptyList<String>()
+    private var categoryAndColor = mutableListOf<Category>()
 
     init {
         val a = context.theme.obtainStyledAttributes(attributeSet, R.styleable.CostChartView, 0, 0)
@@ -116,6 +118,7 @@ class CostChartView @JvmOverloads constructor(
             startAngle += mapConsumption[listKey] ?: 0f
             i++
         }
+        canvas.translate(centerX, centerY)
         canvas.restore()
     }
 
@@ -126,7 +129,20 @@ class CostChartView @JvmOverloads constructor(
     fun setCost(mapFrom: Map<String, Float>) {
         list = mapFrom.keys.toList()
         map = mapFrom
+        var i = 0
+        list.forEach {
+            categoryAndColor.add(i, Category(it, listOfColors[i], 0.0, angleToPercent(map[it] ?: 0f)))
+            i++
+        }
         invalidate()
+    }
+
+    fun getCategoryAndColors(): List<Category> {
+        return categoryAndColor
+    }
+
+    private fun angleToPercent(angle: Float) : Double {
+        return (angle / 360 * 100).toDouble()
     }
 
 

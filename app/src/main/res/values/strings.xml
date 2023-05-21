@@ -51,6 +51,10 @@
     <string name="date">Дата</string>
     <string name="descConsumption">Описание траты</string>
     <string name="price">Цена</string>
+    <string name="all_consumption">Всего потрачено: </string>
+    <string name="all_consumption_home">%1$s руб.</string>
+
+    <string name="rub"> руб.</string>
 
 
 </resources>

@@ -1,7 +1,3 @@
 package com.example.homefinancialassistant.data
 
-import androidx.room.ColumnInfo
-
-data class Category(
-    @ColumnInfo(name = "category") val category: String
-)
+class Category(val categoryName: String, val categoryColor: String, var categoryPrice: Double, val categoryPercent: Double)

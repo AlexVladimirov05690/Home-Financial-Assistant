@@ -6,5 +6,9 @@ import java.math.RoundingMode
 class MathHelper {
     fun rounding(number: Double): Double {
         return BigDecimal(number).setScale(2, RoundingMode.HALF_UP).toDouble()
+
+    }
+    fun rounding(number: Float): Float {
+        return BigDecimal(number.toDouble()).setScale(2, RoundingMode.HALF_UP).toFloat()
     }
 }

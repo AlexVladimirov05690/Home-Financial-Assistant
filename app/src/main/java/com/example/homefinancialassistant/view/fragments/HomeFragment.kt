@@ -1,17 +1,19 @@
 package com.example.homefinancialassistant.view.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.homefinancialassistant.R
 import com.example.homefinancialassistant.databinding.FragmentHomeBinding
+import com.example.homefinancialassistant.view.adapters.HomeCategoryColorsAdapter
+import com.example.homefinancialassistant.view.adapters.TopSpacingItemDecoration
 import com.example.homefinancialassistant.viewmodels.HomeFragmentViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -19,8 +21,7 @@ import kotlinx.coroutines.withContext
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeFragmentViewModel by viewModels()
-
-
+    private lateinit var homeCategoryColorsAdapter: HomeCategoryColorsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,43 +33,41 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.text.text = "здесь должны быть все траты из базы данных"
+        initAdapter()
         val scope = CoroutineScope(Dispatchers.Main)
         scope.launch {
-            Log.e("!!!", "запущена корутина")
-            binding.text.text = viewModel.totalPrice.first().toString()
+            withContext(Dispatchers.IO) {
+                val totalPriceFromDb = viewModel.getTotalConsumptionPrice()
+                withContext(Dispatchers.Main) {
+                    binding.text.text = getString(R.string.all_consumption_home, totalPriceFromDb.toString())
+
+                }
+            }
             withContext(Dispatchers.IO) {
                 val map = viewModel.consumptionToMap()
-                println("!!!$map")
-                withContext(Dispatchers.Main) {
-                    binding.costChartView.setCost(map)
+                if (map.isNotEmpty()) {
+                    withContext(Dispatchers.Main) {
+                        binding.costChartView.setCost(map)
+                        val list = binding.costChartView.getCategoryAndColors()
+                        println("!!!$list")
+                    }
                 }
             }
 
+
+            homeCategoryColorsAdapter.submitList(binding.costChartView.getCategoryAndColors())
         }
-
     }
-//        scope = CoroutineScope(Dispatchers.IO).also { scope ->
-//            val listCategory = scope.async {
-//                viewModel.getUniqueCategoryFromDb()
-//            }
-//            val map = scope.async {
-//                viewModel.consumptionToMap(listCategory.await())
-//            }
-//
-//            scope.launch { binding.costChartView.setCost(map.await(), listCategory.await()) }
-//            scope.launch {
-//                binding.text.text = viewModel.returnPrice()
-//            }
-//        }
 
-
-    //binding.costChartView.setCost(map, listOf("Еда", "Квартплата", "Автомобиль", "Прочее"))
-//        scope = CoroutineScope(Dispatchers.IO)
-//        scope.launch {
-//            viewModel.getUniqueCategoryFromDb().forEach{
-//                println("!!!$it")
-//            }
+    private fun initAdapter() {
+        binding.consumptionRecyclerViewHome.apply {
+            homeCategoryColorsAdapter = HomeCategoryColorsAdapter()
+            adapter = homeCategoryColorsAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            val decorator = TopSpacingItemDecoration(8)
+            addItemDecoration(decorator)
+        }
+    }
 }
 
 
