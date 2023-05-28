@@ -17,7 +17,7 @@ class HomeCategoryColorItem(itemView: View): RecyclerView.ViewHolder(itemView) {
     fun bind(category: Category) {
         colorCategory.setBackgroundColor(Color.parseColor(category.categoryColor))
         categoryName.text = category.categoryName
-        price.text = category.categoryPrice.toString()
-        percent.text = category.categoryPercent.toString()
+        price.text = category.categoryPrice.toString() + " руб."
+        percent.text = category.categoryPercent.toString() + " %"
     }
 }

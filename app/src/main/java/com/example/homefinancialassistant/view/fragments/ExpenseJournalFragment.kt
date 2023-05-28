@@ -23,7 +23,6 @@ class ExpenseJournalFragment : Fragment() {
     private lateinit var binding: FragmentExpenseJournalBinding
     private lateinit var consumptionAdapter: ExpenseRecyclerViewAdapter
     private lateinit var scope: CoroutineScope
-    private var consumptionList = mutableListOf<Consumption>()
     private val viewModel: ExpenseJournalFragmentViewModel by viewModels()
 
     override fun onCreateView(
@@ -42,7 +41,7 @@ class ExpenseJournalFragment : Fragment() {
             scope.launch {
                 viewModel.listConsumption.collect{
                     withContext(Dispatchers.Main) {
-                        consumptionAdapter.addItems(it)
+                        consumptionAdapter.submitList(it)
                     }
                 }
             }

@@ -8,7 +8,7 @@ import com.example.homefinancialassistant.data.Category
 import com.example.homefinancialassistant.utils.DiffUtilHomeCategoryItem
 import com.example.homefinancialassistant.view.holders.HomeCategoryColorItem
 
-class HomeCategoryColorsAdapter() :
+class HomeCategoryColorsAdapter :
     ListAdapter<Category, HomeCategoryColorItem>(DiffUtilHomeCategoryItem()) {
 
 

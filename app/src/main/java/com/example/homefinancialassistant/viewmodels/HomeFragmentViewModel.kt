@@ -31,7 +31,6 @@ class HomeFragmentViewModel : ViewModel() {
             resultList.addAll(interactor.getCategoriesFromDb())
             resultList.sort()
             resultList.distinct()
-            println("!!!$resultList")
             deleteDublicate(resultList)
         }
 
@@ -71,7 +70,7 @@ class HomeFragmentViewModel : ViewModel() {
         return result.await()
     }
 
-    private suspend fun categoryPrice(category: String): Double {
+    suspend fun categoryPrice(category: String): Double {
         val resultList = viewModelScope.async {
             var totalPrice = 0.0
             interactor.getAllConsumptionCategoryFromDb(category).forEach {
@@ -79,7 +78,6 @@ class HomeFragmentViewModel : ViewModel() {
             }
             totalPrice
         }
-
         return resultList.await()
     }
 

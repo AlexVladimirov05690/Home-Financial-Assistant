@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.homefinancialassistant.R
 import com.example.homefinancialassistant.databinding.FragmentHomeBinding
+import com.example.homefinancialassistant.utils.MathHelper
 import com.example.homefinancialassistant.view.adapters.HomeCategoryColorsAdapter
 import com.example.homefinancialassistant.view.adapters.TopSpacingItemDecoration
 import com.example.homefinancialassistant.viewmodels.HomeFragmentViewModel
@@ -22,6 +23,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeFragmentViewModel by viewModels()
     private lateinit var homeCategoryColorsAdapter: HomeCategoryColorsAdapter
+    private val mathHelper = MathHelper()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,8 +41,8 @@ class HomeFragment : Fragment() {
             withContext(Dispatchers.IO) {
                 val totalPriceFromDb = viewModel.getTotalConsumptionPrice()
                 withContext(Dispatchers.Main) {
-                    binding.text.text = getString(R.string.all_consumption_home, totalPriceFromDb.toString())
-
+                    binding.text.text =
+                        getString(R.string.all_consumption_home, totalPriceFromDb.toString())
                 }
             }
             withContext(Dispatchers.IO) {
@@ -48,14 +50,23 @@ class HomeFragment : Fragment() {
                 if (map.isNotEmpty()) {
                     withContext(Dispatchers.Main) {
                         binding.costChartView.setCost(map)
-                        val list = binding.costChartView.getCategoryAndColors()
-                        println("!!!$list")
                     }
                 }
             }
-
-
-            homeCategoryColorsAdapter.submitList(binding.costChartView.getCategoryAndColors())
+            withContext(Dispatchers.IO) {
+                val listWithAdapter = binding.costChartView.getCategoryAndColors()
+                    .sortedBy {
+                        it.categoryPercent
+                    }
+                    .reversed()
+                listWithAdapter.forEach {
+                    it.categoryPercent = mathHelper.rounding(it.categoryPercent)
+                    it.categoryPrice = mathHelper.rounding(viewModel.categoryPrice(it.categoryName))
+                }
+                withContext(Dispatchers.Main) {
+                    homeCategoryColorsAdapter.submitList(listWithAdapter)
+                }
+            }
         }
     }
 
