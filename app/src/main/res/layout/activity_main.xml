@@ -6,33 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".view.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/fragmentPlace"
+    <fragment
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/navigation"
         app:layout_constraintBottom_toTopOf="@+id/bottomMainMenu"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <FrameLayout
-        android:id="@+id/fragmentPlaceExpenseJournal"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/add_consumption_fragment_height"
-        app:layout_constraintBottom_toBottomOf = "parent"
-        app:layout_constraintTop_toTopOf = "parent"
-        >
-    </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomMainMenu"
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottom_main_menu_height"
-        android:elevation="2dp"
         android:background="@drawable/bottom_rectangle"
+        android:elevation="2dp"
         app:itemIconTint="@color/color_text_bottom_menu"
-        app:itemTextColor="@android:color/darker_gray"
         app:itemRippleColor="@color/active_button_bottom_menu"
         app:itemTextAppearanceActive="@style/bottom_nav_text_active"
         app:itemTextAppearanceInactive="@style/bottom_nav_text_no_active"
+        app:itemTextColor="@android:color/darker_gray"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_main_menu" />

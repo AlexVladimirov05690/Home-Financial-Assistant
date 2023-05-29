@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.homefinancialassistant.R
 import com.example.homefinancialassistant.data.Consumption
 import com.example.homefinancialassistant.databinding.FragmentExpenseJournalBinding
 import com.example.homefinancialassistant.view.MainActivity
@@ -50,7 +51,7 @@ class ExpenseJournalFragment : Fragment() {
 
     private fun initButtons() {
         binding.addConsumptionFabButton.setOnClickListener {
-            (activity as MainActivity).showAddFragment()
+            (activity as MainActivity).navController.navigate(R.id.addConsumptionFragment)
         }
     }
 
@@ -58,7 +59,9 @@ class ExpenseJournalFragment : Fragment() {
         binding.consumptionRecyclerView.apply {
             consumptionAdapter = ExpenseRecyclerViewAdapter(object : ExpenseRecyclerViewAdapter.OnOpenConsumption {
                 override fun openConsumption(consumption: Consumption) {
-                    (requireActivity() as MainActivity).launchConsumptionFragment(consumption)
+                    val bundle = Bundle()
+                    bundle.putParcelable("consumption", consumption)
+                    (requireActivity() as MainActivity).navController.navigate(R.id.consumptionFragment, bundle)
                 }
             })
             adapter = consumptionAdapter
