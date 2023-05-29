@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/add_consumption_fragment_height"
+    tools:context=".view.fragments.AddConsumptionFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/topHeadlineConsumption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_consumption"
+            android:theme="@style/HeadLine1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/enterCategoryContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_between_elements"
+            app:boxStrokeColor="@color/secondary_color"
+            app:endIconMode="clear_text"
+            android:hint="@string/add_category"
+            app:layout_constraintTop_toBottomOf="@+id/topHeadlineConsumption">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/enterCategory"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_edit_text"
+                android:inputType="text"
+                android:theme="@style/Field_credit" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/enterPriceContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_between_elements"
+            app:boxStrokeColor="@color/secondary_color"
+            app:endIconMode="clear_text"
+            android:hint="@string/add_price"
+            app:layout_constraintTop_toBottomOf="@+id/enterCategoryContainer">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/enterPrice"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_edit_text"
+                android:inputType="numberDecimal"
+                android:theme="@style/Field_credit" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/enterDescriptionContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_between_elements"
+            android:hint="@string/add_description"
+            app:boxStrokeColor="@color/secondary_color"
+            app:endIconMode="clear_text"
+            app:layout_constraintTop_toBottomOf="@+id/enterPriceContainer">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/enterDescription"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_edit_text"
+                android:inputType="text"
+                android:theme="@style/Field_credit"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/spinnerCategories"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/spinner_height"
+            android:layout_marginEnd="40dp"
+            android:contentDescription="@string/spinnerText"
+            app:layout_constraintBottom_toBottomOf="@+id/enterCategoryContainer"
+            app:layout_constraintEnd_toEndOf="@+id/enterDescriptionContainer" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/buttonContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/enterDescriptionContainer">
+
+            <Button
+                android:id="@+id/btnAddConsumption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_weight="1"
+                android:text="@string/addConsumptionButton"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_weight="1"
+                android:text="@string/buttonCancel"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

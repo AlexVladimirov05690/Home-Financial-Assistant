@@ -22,7 +22,7 @@
             />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/authorization_text"
+            android:id="@+id/authorizationText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -33,15 +33,15 @@
             />
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/button_container"
+            android:id="@+id/buttonContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/authorization_text"
+            app:layout_constraintTop_toBottomOf="@+id/authorizationText"
             android:layout_margin="30dp"
             android:orientation="vertical">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/sign_google"
+                android:id="@+id/signGoogle"
                 android:text="@string/sign_google"
                 android:theme="@style/button_authorization"
                 android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                 />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/sign_vk"
+                android:id="@+id/signVk"
                 android:text="@string/sign_vk"
                 android:theme="@style/button_authorization"
                 android:layout_width="match_parent"
@@ -68,7 +68,7 @@
                 />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/sign_email"
+                android:id="@+id/signEmail"
                 android:text="@string/sign_email"
                 android:theme="@style/button_authorization"
                 android:layout_width="match_parent"
@@ -81,7 +81,7 @@
                 />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/sign_guest"
+                android:id="@+id/signGuest"
                 android:text="@string/sign_guest"
                 android:theme="@style/button_authorization"
                 android:layout_width="match_parent"

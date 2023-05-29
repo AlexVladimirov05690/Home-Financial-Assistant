@@ -2,7 +2,7 @@ package com.example.homefinancialassistant.data.enity
 
 import com.google.gson.annotations.SerializedName
 
-data class CurrencyFreaksApiDTO(
+data class CurrencyFreaksResponse(
     @SerializedName("date")
     val date: String,
     @SerializedName("base")

@@ -32,4 +32,25 @@
     <string name="course_dollar">Курс доллара: </string>
     <string name="course_euro">Курс евро: </string>
     <string name="course_btc">Курс BTC: </string>
+    <string name="add_consumption">Добавление расхода </string>
+    <string name="add_category">Введите категорию </string>
+    <string name="add_price">Введите цену </string>
+    <string name="add_description">Введите описание </string>
+    <string name="addConsumptionButton">Добавить </string>
+    <string name="expense_journal">Журнал расходов </string>
+    <string name="homeHeadline">Ваши траты </string>
+    <string name="spinnerText">Выберите категорию траты</string>
+    <string name="image_consumption_item">image_of_category</string>
+    <string name="anything_text">anything text</string>
+    <string name="anything_long_text">Some long text, for example, a description of spending</string>
+    <string name="delete_button_desc">Удаляет текущую запись</string>
+    <string name="edit_button_desc">Редактировать текущую запись</string>
+    <string name="add_button_desc">Добавление записи</string>
+    <string name="buttonCancel">Отмена</string>
+    <string name="category">Категория</string>
+    <string name="date">Дата</string>
+    <string name="descConsumption">Описание траты</string>
+    <string name="price">Цена</string>
+
+
 </resources>

@@ -12,7 +12,7 @@
         android:layout_marginTop="20dp">
 
         <TextView
-            android:id="@+id/top_headline"
+            android:id="@+id/topHeadline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/credit_params"
@@ -23,17 +23,18 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/enter_amount_of_credit_container"
+            android:id="@+id/enterAmountOfCreditContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_between_elements"
             app:boxStrokeColor="@color/secondary_color"
             app:endIconMode="clear_text"
-            app:layout_constraintTop_toBottomOf="@+id/top_headline">
+            app:hintEnabled="false"
+            app:layout_constraintTop_toBottomOf="@+id/topHeadline">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:hint="@string/enter_amount_of_credit"
-                android:id="@+id/enter_amount_of_credit"
+                android:id="@+id/enterAmountOfCredit"
                 android:layout_width="match_parent"
                 android:theme="@style/Field_credit"
                 android:layout_height="@dimen/height_edit_text"
@@ -48,11 +49,11 @@
             android:layout_marginTop="@dimen/spacing_between_elements"
             app:boxStrokeColor="@color/secondary_color"
             app:endIconMode="clear_text"
-            app:layout_constraintTop_toBottomOf="@+id/enter_amount_of_credit_container">
+            app:layout_constraintTop_toBottomOf="@+id/enterAmountOfCreditContainer">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:hint="@string/enter_tern_of_credit"
-                android:id="@+id/enter_tern_of_credit"
+                android:id="@+id/enterTernOfCredit"
                 android:layout_width="match_parent"
                 android:theme="@style/Field_credit"
                 android:layout_height="@dimen/height_edit_text"
@@ -61,7 +62,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/enter_percent_of_credit_container"
+            android:id="@+id/enterPercentOfCreditContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_between_elements"
@@ -70,18 +71,18 @@
             app:layout_constraintTop_toBottomOf="@+id/enter_tern_of_credit_container">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/enter_percent_of_credit"
+                android:id="@+id/enterPercentOfCredit"
                 android:hint="@string/enter_percent_of_credit"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_edit_text"
                 android:theme="@style/Field_credit"
                 android:inputType="numberDecimal"
-                tools:ignore="DuplicateClickableBoundsCheck,DuplicateClickableBoundsCheck,DuplicateClickableBoundsCheck" />
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/monthly_payment_container_back"
+            android:id="@+id/monthlyPaymentContainerBack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_between_elements"
@@ -93,7 +94,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:hint="@string/monthly_payment_back"
-                android:id="@+id/monthly_payment_back"
+                android:id="@+id/monthlyPaymentBack"
                 android:layout_width="match_parent"
                 android:theme="@style/Field_credit"
                 android:layout_height="@dimen/height_edit_text"
@@ -105,10 +106,10 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            app:layout_constraintBottom_toTopOf="@+id/button_container">
+            app:layout_constraintBottom_toTopOf="@+id/buttonContainerCreditCalculator">
 
             <TextView
-                android:id="@+id/monthly_payment_field"
+                android:id="@+id/monthlyPaymentField"
                 android:layout_width="@dimen/bottom_textview_on_main_weight"
                 android:layout_height="@dimen/bottom_textview_on_main_height"
                 android:text="@string/monthly_payment"
@@ -118,16 +119,16 @@
                 />
 
             <TextView
-                android:id="@+id/overpay_field"
+                android:id="@+id/overpayField"
                 android:layout_width="@dimen/bottom_textview_on_main_weight"
                 android:layout_height="@dimen/bottom_textview_on_main_height"
                 android:text="@string/overpayment"
                 android:theme="@style/Field_credit"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/monthly_payment_field" />
+                app:layout_constraintTop_toBottomOf="@+id/monthlyPaymentField" />
 
             <TextView
-                android:id="@+id/monthly_payment_value"
+                android:id="@+id/monthlyPaymentValue"
                 android:layout_width="@dimen/bottom_textview_on_main_weight"
                 android:layout_height="@dimen/bottom_textview_on_main_height"
                 android:theme="@style/Field_credit"
@@ -136,19 +137,19 @@
                 android:text="@string/null_number"/>
 
             <TextView
-                android:id="@+id/overpay_value"
+                android:id="@+id/overpayValue"
                 android:layout_width="@dimen/bottom_textview_on_main_weight"
                 android:layout_height="@dimen/bottom_textview_on_main_height"
                 android:theme="@style/Field_credit"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/monthly_payment_value"
+                app:layout_constraintTop_toBottomOf="@id/monthlyPaymentValue"
                 android:text="@string/null_number"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/button_container"
+            android:id="@+id/buttonContainerCreditCalculator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
@@ -157,7 +158,7 @@
             >
 
             <Button
-                android:id="@+id/calculation"
+                android:id="@+id/btnCalculation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -167,7 +168,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
-                android:id="@+id/switch_button"
+                android:id="@+id/btnSwitchButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
