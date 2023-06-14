@@ -27,6 +27,11 @@ class MainRepository(
     }
 
     fun insertConsumption(consumption: Consumption) {
+//        consumption.category = consumption.category.replace("\\s".toRegex(), "")
+//        if (consumption.category.first().isLowerCase()) {
+//            consumption.category.replaceFirstChar {
+//            }
+//        }
         val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
             throwable.printStackTrace()
         }
@@ -48,6 +53,22 @@ class MainRepository(
         scope.launch(Dispatchers.IO + coroutineExceptionHandler) {
             expenseJournalDao.delete(consumption)
         }
+    }
+
+    suspend fun getCategories(): List<String> {
+        return expenseJournalDao.getCategory()
+    }
+
+    fun getListCategories(): List<String> {
+        return expenseJournalDao.getListCategory()
+    }
+
+    suspend fun getAllConsumptionCategory(category: String): List<Consumption> {
+        return expenseJournalDao.getAllConsumptionCategory(category)
+    }
+
+    fun getAllPrice(): Flow<Double> {
+        return expenseJournalDao.getAllPrice()
     }
 
 }

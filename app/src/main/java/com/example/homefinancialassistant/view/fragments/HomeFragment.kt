@@ -5,12 +5,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.homefinancialassistant.R
 import com.example.homefinancialassistant.databinding.FragmentHomeBinding
+import com.example.homefinancialassistant.utils.MathHelper
+import com.example.homefinancialassistant.view.adapters.HomeCategoryColorsAdapter
+import com.example.homefinancialassistant.view.adapters.TopSpacingItemDecoration
+import com.example.homefinancialassistant.viewmodels.HomeFragmentViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
-    private val map = mapOf("Еда" to 120f, "Квартплата" to 120f, "Прочее" to 120f)
+    private val viewModel: HomeFragmentViewModel by viewModels()
+    private lateinit var homeCategoryColorsAdapter: HomeCategoryColorsAdapter
+    private val mathHelper = MathHelper()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -21,8 +35,51 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.costChartView.setCost(map)
-
+        initAdapter()
+        val scope = CoroutineScope(Dispatchers.Main)
+        scope.launch {
+            withContext(Dispatchers.IO) {
+                val totalPriceFromDb = viewModel.getTotalConsumptionPrice()
+                withContext(Dispatchers.Main) {
+                    binding.text.text =
+                        getString(R.string.all_consumption_home, totalPriceFromDb.toString())
+                }
+            }
+            withContext(Dispatchers.IO) {
+                val map = viewModel.consumptionToMap()
+                if (map.isNotEmpty()) {
+                    withContext(Dispatchers.Main) {
+                        binding.costChartView.setCost(map)
+                    }
+                }
+            }
+            withContext(Dispatchers.IO) {
+                val listWithAdapter = binding.costChartView.getCategoryAndColors()
+                    .sortedBy {
+                        it.categoryPercent
+                    }
+                    .reversed()
+                listWithAdapter.forEach {
+                    it.categoryPercent = mathHelper.rounding(it.categoryPercent)
+                    it.categoryPrice = mathHelper.rounding(viewModel.categoryPrice(it.categoryName))
+                }
+                withContext(Dispatchers.Main) {
+                    homeCategoryColorsAdapter.submitList(listWithAdapter)
+                }
+            }
+        }
     }
 
+    private fun initAdapter() {
+        binding.consumptionRecyclerViewHome.apply {
+            homeCategoryColorsAdapter = HomeCategoryColorsAdapter()
+            adapter = homeCategoryColorsAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            val decorator = TopSpacingItemDecoration(8)
+            addItemDecoration(decorator)
+        }
+    }
 }
+
+
+

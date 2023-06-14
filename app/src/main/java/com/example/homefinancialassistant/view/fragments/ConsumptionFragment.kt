@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.homefinancialassistant.R
 import com.example.homefinancialassistant.data.Consumption
 import com.example.homefinancialassistant.data.db.converters.Converters
 import com.example.homefinancialassistant.databinding.FragmentConsumptionBinding
@@ -32,11 +33,11 @@ class ConsumptionFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        consumption = arguments?.get("consumption") as Consumption
+        consumption = arguments?.getParcelable("consumption") ?: consumptionDefault
         binding.categoryConsumption.text = consumption.category
         binding.dateConsumption.text = calendarToString(consumption.date)
         binding.descConsumption.text = consumption.description
-        binding.priceConsumption.text = consumption.price.toString()
+        binding.priceConsumption.text = getString(R.string.all_consumption_home, consumption.price.toString())
         initButton()
     }
 
@@ -50,12 +51,16 @@ class ConsumptionFragment: Fragment() {
         binding.buttonDelete.setOnClickListener{
 
             viewModel.deleteConsumption(consumption)
-            (requireActivity() as MainActivity).closeFragment(this)
+            (requireActivity() as MainActivity).navController.popBackStack()
 
 
         }
         binding.buttonCancel.setOnClickListener {
-            (requireActivity() as MainActivity).closeFragment(this)
+            (requireActivity() as MainActivity).navController.popBackStack()
         }
+    }
+
+    companion object {
+        val consumptionDefault = Consumption(0, Calendar.getInstance(), "", 0.0, "")
     }
 }

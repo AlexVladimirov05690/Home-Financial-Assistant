@@ -8,6 +8,8 @@ import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
 import com.example.homefinancialassistant.R
+import com.example.homefinancialassistant.data.Category
+import kotlin.math.min
 
 class CostChartView @JvmOverloads constructor(
     context: Context,
@@ -18,11 +20,34 @@ class CostChartView @JvmOverloads constructor(
     private var centerX: Float = 0f
     private var centerY: Float = 0f
     private var percent: Int = 10
-    private lateinit var circlePaint1: Paint
-    private lateinit var circlePaint2: Paint
-    private lateinit var circlePaint3: Paint
+    private var listOfPaints: List<Paint>
+    private val listOfColors = listOf(
+        "#cc0605",
+        "#31f90c",
+        "#0c0ef9",
+        "#f9f824",
+        "#7b0368",
+        "#00FFFF",
+        "#DCDCDC",
+        "#C71585",
+        "#FF4500",
+        "#FF00FF",
+        "#D2691E",
+        "#800000",
+        "#C0C0C0",
+        "#ADFF2F",
+        "#66CDAA",
+        "#A9A9A9",
+        "#fbb56e",
+        "#6b0319",
+        "#a5a9fd",
+        "#f9a40f",
+        "#f81cf9"
+    )
 
-    private var map = mapOf("Еда" to 52f, "Квартплата" to 100f, "Прочее" to 108f)
+    private var map = mapOf<String, Float>()
+    private var list = emptyList<String>()
+    private var categoryAndColor = mutableListOf<Category>()
 
     init {
         val a = context.theme.obtainStyledAttributes(attributeSet, R.styleable.CostChartView, 0, 0)
@@ -31,24 +56,22 @@ class CostChartView @JvmOverloads constructor(
         } finally {
             a.recycle()
         }
-        initPaint()
+        listOfPaints = initListOfPaints(listOfColors)
     }
 
-    private fun initPaint() {
-        circlePaint1 = Paint().apply {
-            style = Paint.Style.FILL
-            color = Color.GREEN
-        }
 
-        circlePaint2 = Paint().apply {
-            style = Paint.Style.FILL
-            color = Color.RED
+    private fun initListOfPaints(listOfColors: List<String>): List<Paint> {
+        val list = mutableListOf<Paint>()
+        var i = 0
+        listOfColors.forEach {
+            val paint = Paint().apply {
+                style = Paint.Style.FILL
+                color = Color.parseColor(it)
+            }
+            list.add(i, paint)
+            i++
         }
-
-        circlePaint3 = Paint().apply {
-            style = Paint.Style.FILL
-            color = Color.BLUE
-        }
+        return list
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -69,7 +92,7 @@ class CostChartView @JvmOverloads constructor(
         val chosenWidth = chooseDimension(widthMode, widthSize)
         val chosenHeight = chooseDimension(heightMode, heightSize)
 
-        val minSide = Math.min(chosenWidth, chosenHeight)
+        val minSide = min(chosenWidth, chosenHeight)
         centerX = minSide.div(2f)
         centerY = minSide.div(2f)
 
@@ -84,18 +107,18 @@ class CostChartView @JvmOverloads constructor(
 
     private fun drawCost(canvas: Canvas, mapConsumption: Map<String, Float>) {
         val scale = radius * 0.8f
-        val list = listOf("Еда", "Квартплата", "Прочее")
         var startAngle = 0f
         var i = 0
+        val listCategoryFromMap = mapConsumption.keys
         canvas.save()
         canvas.translate(centerX, centerY)
         oval.set(0f - scale, 0f - scale, scale, scale)
-        val listPaint = listOf(circlePaint1, circlePaint2, circlePaint3)
-        list.forEach {listKey ->
-            canvas.drawArc(oval, startAngle, mapConsumption[listKey] ?: 0f, true, listPaint[i])
+        listCategoryFromMap.forEach { listKey ->
+            canvas.drawArc(oval, startAngle, mapConsumption[listKey] ?: 0f, true, listOfPaints[i])
             startAngle += mapConsumption[listKey] ?: 0f
             i++
         }
+        canvas.translate(centerX, centerY)
         canvas.restore()
     }
 
@@ -104,8 +127,22 @@ class CostChartView @JvmOverloads constructor(
     }
 
     fun setCost(mapFrom: Map<String, Float>) {
+        list = mapFrom.keys.toList()
         map = mapFrom
+        var i = 0
+        list.forEach {
+            categoryAndColor.add(i, Category(it, listOfColors[i], 0.0, angleToPercent(map[it] ?: 0f)))
+            i++
+        }
         invalidate()
+    }
+
+    fun getCategoryAndColors(): List<Category> {
+        return categoryAndColor
+    }
+
+    private fun angleToPercent(angle: Float) : Double {
+        return (angle / 360 * 100).toDouble()
     }
 
 

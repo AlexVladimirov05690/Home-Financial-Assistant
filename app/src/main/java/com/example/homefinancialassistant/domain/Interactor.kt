@@ -83,4 +83,20 @@ class Interactor(
         mainRepository.deleteConsumption(consumption)
     }
 
+    suspend fun getCategoriesFromDb(): List<String> {
+        return mainRepository.getCategories()
+    }
+
+    fun getListCategoriesFromDb() : List<String> {
+        return mainRepository.getListCategories()
+    }
+
+    suspend fun getAllConsumptionCategoryFromDb(category: String): List<Consumption> {
+        return mainRepository.getAllConsumptionCategory(category)
+    }
+
+    fun getAllPriceFromDb(): Flow<Double> {
+        return mainRepository.getAllPrice()
+    }
+
 }
