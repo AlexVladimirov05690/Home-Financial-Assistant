@@ -99,4 +99,12 @@ class Interactor(
         return mainRepository.getAllPrice()
     }
 
+    fun getDefaultScreen(): String {
+        return settingProvider.getDefaultScreen()
+    }
+
+    fun changeDefaultScreen(screen: String) {
+        settingProvider.saveDefaultScreen(screen)
+    }
+
 }

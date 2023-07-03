@@ -48,14 +48,11 @@ class ConsumptionFragment: Fragment() {
 
     private fun initButton() {
         binding.buttonDelete.setOnClickListener{
-
             viewModel.deleteConsumption(consumption)
-            (requireActivity() as MainActivity).closeFragment(this)
-
-
+            (requireActivity() as MainActivity).navController.popBackStack()
         }
         binding.buttonCancel.setOnClickListener {
-            (requireActivity() as MainActivity).closeFragment(this)
+            (requireActivity() as MainActivity).navController.popBackStack()
         }
     }
 }
