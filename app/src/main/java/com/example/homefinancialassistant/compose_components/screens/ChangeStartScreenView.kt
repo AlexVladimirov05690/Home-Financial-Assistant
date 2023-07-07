@@ -32,6 +32,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.homefinancialassistant.R
 import com.example.homefinancialassistant.view.MainActivity
 import com.example.homefinancialassistant.viewmodels.ChangeStartScreenViewModel
 
@@ -39,7 +40,6 @@ import com.example.homefinancialassistant.viewmodels.ChangeStartScreenViewModel
 fun ChangeStartScreenView(activity: MainActivity) {
     val viewModel: ChangeStartScreenViewModel = viewModel()
     val listScreens by viewModel.listOfScreen.collectAsState()
-    val selectedScreen by viewModel.selectedScreen.collectAsState()
     LazyColumn(
         content = {
             item {
@@ -57,7 +57,7 @@ fun ChangeStartScreenView(activity: MainActivity) {
 
                 Column(Modifier.selectableGroup()) {
                     val (selectedOption, onOptionSelect) = remember {
-                        mutableStateOf(listScreens[0])
+                        mutableStateOf(listScreens[viewModel.numberOfListScreensDefault()])
                     }
                     listScreens.forEach { screen ->
                         Row(
@@ -83,7 +83,7 @@ fun ChangeStartScreenView(activity: MainActivity) {
                         .padding(end = 20.dp),
                         onClick = {
                             viewModel.changedDefaultScreen()
-                            activity.navController.popBackStack()
+                            activity.navController.navigate(R.id.settingsFragment)
                         }) {
                         Icon(Icons.Filled.Done, contentDescription = null)
                     }

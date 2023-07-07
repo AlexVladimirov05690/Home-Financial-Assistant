@@ -6,6 +6,7 @@ import com.example.homefinancialassistant.di.modules.MathModule
 import com.example.homefinancialassistant.di.modules.RemoteModule
 import com.example.homefinancialassistant.domain.Interactor
 import com.example.homefinancialassistant.utils.Credit
+import com.example.homefinancialassistant.view.MainActivity
 import com.example.homefinancialassistant.viewmodels.AddConsumptionFragmentViewModel
 import com.example.homefinancialassistant.viewmodels.ChangeStartScreenViewModel
 import com.example.homefinancialassistant.viewmodels.ConsumptionFragmentViewModel
@@ -13,6 +14,7 @@ import com.example.homefinancialassistant.viewmodels.CreditCalculatorFragmentVie
 import com.example.homefinancialassistant.viewmodels.ExchangeRatesFragmentViewModel
 import com.example.homefinancialassistant.viewmodels.ExpenseJournalFragmentViewModel
 import com.example.homefinancialassistant.viewmodels.HomeFragmentViewModel
+import com.example.homefinancialassistant.viewmodels.SettingFragmentViewModel
 import dagger.Component
 import javax.inject.Singleton
 
@@ -28,4 +30,6 @@ interface AppComponent {
     fun inject(consumptionFragmentViewModel: ConsumptionFragmentViewModel)
     fun inject(homeFragmentViewModel: HomeFragmentViewModel)
     fun inject(changedStartScreenViewModel: ChangeStartScreenViewModel)
+    fun inject(settingFragmentViewModel: SettingFragmentViewModel)
+    fun inject(mainActivity: MainActivity)
 }

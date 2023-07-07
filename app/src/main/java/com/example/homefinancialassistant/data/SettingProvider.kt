@@ -9,8 +9,6 @@ class SettingProvider(context: Context) {
     private val appContext = context.applicationContext
     private val preferences: SharedPreferences =
         appContext.getSharedPreferences(SETTINGS, Context.MODE_PRIVATE)
-
-
     init {
         if (preferences.getBoolean(KEY_FIRST_LAUNCH, false)) {
             preferences.edit {
@@ -55,7 +53,7 @@ class SettingProvider(context: Context) {
 
     companion object {
         private const val KEY_FIRST_LAUNCH = "first_launch"
-        private const val DEFAULT_SCREEN = "home"
+        private const val DEFAULT_SCREEN = "Главный экран"
         private const val KEY_DEFAULT_SCREEN = "default screen"
         private const val DATE_OF_LAST_REQUEST = "date_of_last_request"
         private const val SETTINGS = "settings"
