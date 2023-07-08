@@ -9,7 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
-import com.example.homefinancialassistant.compose.screens.ChangeStartScreenView
+import com.example.homefinancialassistant.compose.screens.ChangeStartScreen
 import com.example.homefinancialassistant.compose.ui.HomeFinancialAssistantTheme
 import com.example.homefinancialassistant.view.MainActivity
 
@@ -25,7 +25,7 @@ class ChangeStartScreenFragment: Fragment() {
                     Surface(
                         modifier = Modifier.fillMaxSize()
                     ) {
-                        ChangeStartScreenView(activity as MainActivity)
+                        ChangeStartScreen(activity as MainActivity)
                     }
                 }
             }

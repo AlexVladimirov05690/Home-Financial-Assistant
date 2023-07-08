@@ -25,7 +25,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -37,7 +36,7 @@ import com.example.homefinancialassistant.view.MainActivity
 import com.example.homefinancialassistant.viewmodels.ChangeStartScreenViewModel
 
 @Composable
-fun ChangeStartScreenView(activity: MainActivity) {
+fun ChangeStartScreen(activity: MainActivity) {
     val viewModel: ChangeStartScreenViewModel = viewModel()
     val listScreens by viewModel.listOfScreen.collectAsState()
     LazyColumn(
@@ -47,7 +46,7 @@ fun ChangeStartScreenView(activity: MainActivity) {
                     "Выбор стартового экрана", modifier = Modifier
                         .fillMaxWidth(), textAlign = TextAlign.Center,
                     style = TextStyle(
-                        color = Color.Black,
+                        color = MaterialTheme.colorScheme.outline,
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold
                     )
@@ -72,7 +71,9 @@ fun ChangeStartScreenView(activity: MainActivity) {
                                     onOptionSelect(screen)
                                     viewModel.changedSelectedScreen(screen)
                                 })
-                            Text(text = screen)
+                            Text(text = screen, style = TextStyle(
+                                color = MaterialTheme.colorScheme.outline
+                            ))
                         }
                     }
                 }

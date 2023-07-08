@@ -18,7 +18,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -57,7 +56,7 @@ fun Toolbar(viewModel: SettingFragmentViewModel, activity: MainActivity) {
         Text(
             "Настройки", modifier = Modifier
                 .fillMaxWidth(), textAlign = TextAlign.Center,
-            style = TextStyle(color = Color.Black, fontSize = 24.sp, fontWeight = FontWeight.Bold)
+            style = TextStyle(color = MaterialTheme.colorScheme.outline, fontSize = 24.sp, fontWeight = FontWeight.Bold)
         )
         Row(
             modifier = Modifier
@@ -67,7 +66,7 @@ fun Toolbar(viewModel: SettingFragmentViewModel, activity: MainActivity) {
                 nameProfile, modifier = Modifier
                     .weight(0.7f)
                     .padding(start = 16.dp, top = 10.dp),
-                style = TextStyle(color = Color.Black, fontSize = 20.sp)
+                style = TextStyle(color = MaterialTheme.colorScheme.outline, fontSize = 20.sp)
             )
             Button(onClick = {
                 activity.navController.navigate(R.id.authorizationFragment)
@@ -93,7 +92,7 @@ fun DarkTheme(viewModel: SettingFragmentViewModel) {
                 .weight(0.6f)
                 .padding(start = 10.dp, top = 7.dp),
             textAlign = TextAlign.Start,
-            style = TextStyle(color = Color.Black, fontSize = 20.sp)
+            style = TextStyle(color = MaterialTheme.colorScheme.outline, fontSize = 20.sp)
         )
 
         Button(onClick = {
@@ -123,14 +122,14 @@ fun ChangeStartScreen(viewModel: SettingFragmentViewModel, activity: MainActivit
                     .weight(0.6f)
                     .padding(start = 10.dp),
                 textAlign = TextAlign.Start,
-                style = TextStyle(color = Color.Black, fontSize = 20.sp)
+                style = TextStyle(color = MaterialTheme.colorScheme.outline, fontSize = 20.sp)
             )
             Text(
                 startScreenView.value,
                 modifier = Modifier
                     .weight(0.4f)
                     .padding(start = 20.dp),
-                style = TextStyle(color = Color.Black, fontSize = 12.sp)
+                style = TextStyle(color = MaterialTheme.colorScheme.outline, fontSize = 12.sp)
             )
         }
 
