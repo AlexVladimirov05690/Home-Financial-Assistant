@@ -9,7 +9,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
-import com.example.homefinancialassistant.compose_components.screens.SettingScreen
+import com.example.homefinancialassistant.compose.screens.SettingScreen
+import com.example.homefinancialassistant.compose.ui.HomeFinancialAssistantTheme
 import com.example.homefinancialassistant.view.MainActivity
 
 class SettingsFragment : Fragment() {
@@ -20,10 +21,12 @@ class SettingsFragment : Fragment() {
     ): View {
         return ComposeView(requireContext()).apply {
             setContent {
-                Surface(
-                    modifier = Modifier.fillMaxSize()
-                ) {
-                    SettingScreen(activity as MainActivity)
+                HomeFinancialAssistantTheme() {
+                    Surface(
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        SettingScreen(activity as MainActivity)
+                    }
                 }
             }
         }

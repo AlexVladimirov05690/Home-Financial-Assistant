@@ -1,4 +1,4 @@
-package com.example.homefinancialassistant.compose_components.screens
+package com.example.homefinancialassistant.compose.screens
 
 
 import androidx.compose.foundation.background
