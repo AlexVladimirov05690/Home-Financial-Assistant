@@ -7,6 +7,7 @@ import com.example.homefinancialassistant.di.modules.RemoteModule
 import com.example.homefinancialassistant.domain.Interactor
 import com.example.homefinancialassistant.utils.Credit
 import com.example.homefinancialassistant.view.MainActivity
+import com.example.homefinancialassistant.view.fragments.HomeFragment
 import com.example.homefinancialassistant.viewmodels.AddConsumptionFragmentViewModel
 import com.example.homefinancialassistant.viewmodels.ChangeStartScreenViewModel
 import com.example.homefinancialassistant.viewmodels.ConsumptionFragmentViewModel
@@ -32,4 +33,5 @@ interface AppComponent {
     fun inject(changedStartScreenViewModel: ChangeStartScreenViewModel)
     fun inject(settingFragmentViewModel: SettingFragmentViewModel)
     fun inject(mainActivity: MainActivity)
+    fun inject(homeFragment: HomeFragment)
 }

@@ -3,6 +3,7 @@ package com.example.homefinancialassistant.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.homefinancialassistant.App
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var interactor: Interactor
     init {
         App.instance.dagger.inject(this)
+        themeAtStartup(interactor.getThemeApp()?:"")
     }
     lateinit var binding: ActivityMainBinding
     lateinit var navController: NavController
@@ -31,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         navController = Navigation.findNavController(this, R.id.fragmentPlace)
-        navController.navigate(showStartScreen(interactor.getDefaultScreen()))
+        openStartScreenWithChangeDarkTheme()
         initButtons()
         onBackPressedDispatcher.addCallback(this, onBackPressedCallBack)
     }
@@ -60,7 +62,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
 
-                R.id.profile -> {
+                R.id.settings -> {
                     navController.navigate(R.id.settingsFragment)
                     true
                 }
@@ -82,14 +84,33 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showStartScreen(screen: String): Int {
-        val screenInt: Int
-        when(screen) {
-            "Главный экран" -> screenInt = R.id.homeFragment
-            "Кредитный калькулятор" -> screenInt = R.id.creditCalculatorFragment
-            "Конвертёр валют" -> screenInt = R.id.exchangeRatesFragment
-            "Журнал расходов" -> screenInt = R.id.expenseJournalFragment
-            else -> screenInt = R.id.homeFragment
+        val screenInt: Int = when(screen) {
+            "Главный экран" -> R.id.homeFragment
+            "Кредитный калькулятор" -> R.id.creditCalculatorFragment
+            "Конвертёр валют" -> R.id.exchangeRatesFragment
+            "Журнал расходов" -> R.id.expenseJournalFragment
+            "Настройки" -> R.id.settingsFragment
+            else -> R.id.homeFragment
         }
         return screenInt
+    }
+
+    private fun openStartScreenWithChangeDarkTheme() {
+        if(interactor.getKeyStartScreenFromScreenSettings()) {
+            navController.navigate(showStartScreen("Настройки"))
+            interactor.changeKeyStartScreenFromScreenSettings(false)
+        }
+        else {
+            navController.navigate(showStartScreen(interactor.getDefaultScreen()))
+        }
+    }
+
+    private fun themeAtStartup(string: String) {
+        return when(string) {
+            "auto" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+            "light" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            "dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            else -> {AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)}
+        }
     }
 }

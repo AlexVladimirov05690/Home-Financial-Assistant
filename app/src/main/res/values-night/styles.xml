@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="HeadLine1" >
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/background_text_color</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:fontFamily">@font/fraunces</item>
+    </style>
+
+    <style name="Title_authorization">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/background_text_color</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:fontFamily">@font/outfit</item>
+    </style>
+
+    <style name="button_authorization">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/background_text_color</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:fontFamily">@font/outfit</item>
+    </style>
+
+    <style name="Field_credit" >
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/background_text_color</item>
+        <item name="android:typeface">monospace</item>
+    </style>
+
+    <style name="ConsumptionItem" >
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/background_text_color</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:fontFamily">@font/outfit</item>
+    </style>
+
+    <style name="Field_converter" >
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/background_text_color</item>
+        <item name="android:typeface">monospace</item>
+    </style>
+
+    <style name="bottom_nav_text_active">
+        <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/outfit</item>
+        <item name="android:textColor">@color/active_button_bottom_menu</item>
+    </style>
+
+    <style name="bottom_nav_text_no_active">
+        <item name="android:textSize">8sp</item>
+        <item name="android:fontFamily">@font/outfit</item>
+        <item name="android:textColorHighlight">@color/color_text_bottom_menu</item>
+    </style>
+
+    <declare-styleable name="CostChartView">
+        <attr name="percent" format="integer" />
+    </declare-styleable>
+
+</resources>

@@ -22,6 +22,6 @@ class Converters {
     }
 
     companion object {
-        const val FORMAT_DATE = "dd MM yyyy hh : mm"
+        const val FORMAT_DATE = "dd MM yyyy HH : mm"
     }
 }

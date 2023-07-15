@@ -18,13 +18,36 @@ class SettingFragmentViewModel: ViewModel() {
     private val _nameProfile: MutableStateFlow<String> = MutableStateFlow("Гость")
     val nameProfile = _nameProfile
 
-    private val _darkTheme: MutableStateFlow<Boolean> = MutableStateFlow(false)
-    val darkTheme = _darkTheme
-
     private val _startScreen: MutableStateFlow<String> = MutableStateFlow(interactor.getDefaultScreen())
     val starScreen = _startScreen
 
-    fun changeTheme() {
-        _darkTheme.value = !_darkTheme.value
+
+    fun changeSmallTextTheme() : String {
+        return when(interactor.getThemeApp()) {
+            "auto" -> "Автоматическое изменение темы"
+            "dark" -> "Тёмная тема"
+            "light" -> "Светлая тема"
+            else -> {""}
+        }
     }
+
+
+    fun changeTheme() {
+        interactor.changeKeyStartScreenFromScreenSettings(true)
+        interactor.changeThemeApp()
+    }
+
+    fun getAutoDarkTheme(): Boolean {
+        return interactor.getAutoDarkTheme()
+    }
+
+    fun changeTextTheme(): String {
+        return when(interactor.getThemeApp()) {
+            "auto" -> "Включить светлую тему"
+            "light" -> "Включить тёмную тему"
+            "dark" -> "Включить режим устройства"
+            else -> ""
+        }
+    }
+
 }

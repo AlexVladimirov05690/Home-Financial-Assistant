@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.homefinancialassistant.App
 import com.example.homefinancialassistant.R
 import com.example.homefinancialassistant.databinding.FragmentHomeBinding
 import com.example.homefinancialassistant.utils.MathHelper
@@ -17,13 +18,19 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeFragmentViewModel by viewModels()
     private lateinit var homeCategoryColorsAdapter: HomeCategoryColorsAdapter
-    private val mathHelper = MathHelper()
+    @Inject
+    lateinit var mathHelper: MathHelper
+
+    init {
+        App.instance.dagger.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

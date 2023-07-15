@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,6 +19,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -56,7 +59,11 @@ fun Toolbar(viewModel: SettingFragmentViewModel, activity: MainActivity) {
         Text(
             "Настройки", modifier = Modifier
                 .fillMaxWidth(), textAlign = TextAlign.Center,
-            style = TextStyle(color = MaterialTheme.colorScheme.outline, fontSize = 24.sp, fontWeight = FontWeight.Bold)
+            style = TextStyle(
+                color = MaterialTheme.colorScheme.outline,
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold
+            )
         )
         Row(
             modifier = Modifier
@@ -71,7 +78,10 @@ fun Toolbar(viewModel: SettingFragmentViewModel, activity: MainActivity) {
             Button(onClick = {
                 activity.navController.navigate(R.id.authorizationFragment)
             }, modifier = Modifier.padding(end = 20.dp)) {
-
+                Icon(
+                    imageVector = ImageVector.vectorResource(id = R.drawable.baseline_person_24),
+                    contentDescription = "Профиль"
+                )
             }
         }
     }
@@ -79,26 +89,49 @@ fun Toolbar(viewModel: SettingFragmentViewModel, activity: MainActivity) {
 
 @Composable
 fun DarkTheme(viewModel: SettingFragmentViewModel) {
-    val darkTheme by viewModel.darkTheme.collectAsState()
+    val changeTextTheme = remember { mutableStateOf(viewModel.changeTextTheme()) }
+    val changeSmallTextTheme = remember { mutableStateOf(viewModel.changeSmallTextTheme()) }
     Row(
         modifier = Modifier
             .height(50.dp)
             .fillMaxWidth()
             .padding(top = 10.dp)
     ) {
-        Text(
-            changeTextTheme(darkTheme),
-            modifier = Modifier
-                .weight(0.6f)
-                .padding(start = 10.dp, top = 7.dp),
-            textAlign = TextAlign.Start,
-            style = TextStyle(color = MaterialTheme.colorScheme.outline, fontSize = 20.sp)
-        )
+        Column(modifier = Modifier.weight(0.7f)) {
+            Text(
+                changeTextTheme.value,
+                modifier = Modifier
+                    .weight(0.6f)
+                    .padding(start = 10.dp),
+                textAlign = TextAlign.Start,
+                style = TextStyle(color = MaterialTheme.colorScheme.outline, fontSize = 20.sp)
+            )
+            Text(
+                changeSmallTextTheme.value,
+                modifier = Modifier
+                    .weight(0.4f)
+                    .padding(start = 20.dp),
+                style = TextStyle(color = MaterialTheme.colorScheme.outline, fontSize = 12.sp)
+
+            )
+        }
 
         Button(onClick = {
             viewModel.changeTheme()
+            changeTextTheme.value = viewModel.changeTextTheme()
+            changeSmallTextTheme.value = viewModel.changeSmallTextTheme()
         }, modifier = Modifier.padding(end = 20.dp)) {
-
+            if (!viewModel.getAutoDarkTheme()) {
+                Icon(
+                    imageVector = ImageVector.vectorResource(id = R.drawable.baseline_settings_brightness_24),
+                    contentDescription = "Дневной/Ночной режим"
+                )
+            } else {
+                Icon(
+                    imageVector = ImageVector.vectorResource(id = R.drawable.baseline_brightness_auto_24),
+                    contentDescription = "Дневной/Ночной режим"
+                )
+            }
         }
     }
 }
@@ -136,15 +169,14 @@ fun ChangeStartScreen(viewModel: SettingFragmentViewModel, activity: MainActivit
         Button(onClick = {
             activity.navController.navigate(R.id.changeStartScreenFragment)
         }, modifier = Modifier.padding(end = 20.dp)) {
-
+            Icon(
+                imageVector = ImageVector.vectorResource(id = R.drawable.baseline_add_to_home_screen_24),
+                contentDescription = "Выбрать стартовый экран"
+            )
         }
     }
 }
 
-fun changeTextTheme(boolean: Boolean): String {
-    return if (boolean) {
-        "Включить тёмную тему"
-    } else "Включить светлую тему"
-}
+
 
 
