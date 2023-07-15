@@ -2,7 +2,6 @@ package com.example.homefinancialassistant.data
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.edit
 import java.util.*
@@ -68,21 +67,18 @@ class SettingProvider(context: Context) {
                 preferences.edit { putBoolean(KEY_AUTO_DARK_MODE, false) }
                 preferences.edit { putBoolean(KEY_DARK_MODE, false) }
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                Toast.makeText(appContext, preferences.getString(THEME, "какая-то тема"), Toast.LENGTH_SHORT).show()
             }
             "light" -> {
                 preferences.edit { putString(THEME, "dark") }
                 preferences.edit { putBoolean(KEY_AUTO_DARK_MODE, false) }
                 preferences.edit { putBoolean(KEY_DARK_MODE, true) }
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                Toast.makeText(appContext, preferences.getString(THEME, "какая-то тема"), Toast.LENGTH_SHORT).show()
             }
             "dark" -> {
                 preferences.edit { putString(THEME, "auto") }
                 preferences.edit { putBoolean(KEY_AUTO_DARK_MODE, true) }
                 preferences.edit { putBoolean(KEY_DARK_MODE, false) }
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-                Toast.makeText(appContext, preferences.getString(THEME, "какая-то тема"), Toast.LENGTH_SHORT).show()
 
             }
             else -> {preferences.edit { putString(THEME, "auto")}}
