@@ -46,7 +46,11 @@ class CostChartView @JvmOverloads constructor(
         "#8B4513",
         "#6A5ACD",
         "#708090",
-        "#7B68EE"
+        "#7B68EE",
+        "#778899",
+        "#4B0082",
+        "#000080",
+        "#FAEBD7"
     )
 
     private var map = mapOf<String, Float>()
