@@ -10,6 +10,7 @@ import com.example.homefinancialassistant.App
 import com.example.homefinancialassistant.R
 import com.example.homefinancialassistant.databinding.ActivityMainBinding
 import com.example.homefinancialassistant.domain.Interactor
+import androidx.core.view.isVisible
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import javax.inject.Inject
 
@@ -66,7 +67,6 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.settingsFragment)
                     true
                 }
-
                 else -> false
             }
         }

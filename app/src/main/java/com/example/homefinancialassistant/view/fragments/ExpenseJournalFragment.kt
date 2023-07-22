@@ -63,6 +63,7 @@ class ExpenseJournalFragment : Fragment() {
                     val bundle = Bundle()
                     bundle.putParcelable("consumption", consumption)
                     (activity as MainActivity).navController.navigate(R.id.consumptionFragment, bundle)
+
                 }
             })
             adapter = consumptionAdapter
