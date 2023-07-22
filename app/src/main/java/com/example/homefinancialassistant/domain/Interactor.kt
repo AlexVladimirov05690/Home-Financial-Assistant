@@ -87,7 +87,7 @@ class Interactor(
         return mainRepository.getCategories()
     }
 
-    fun getListCategoriesFromDb() : List<String> {
+    fun getListCategoriesFromDb(): List<String> {
         return mainRepository.getListCategories()
     }
 
@@ -98,5 +98,34 @@ class Interactor(
     fun getAllPriceFromDb(): Flow<Double> {
         return mainRepository.getAllPrice()
     }
+
+    fun getDefaultScreen(): String {
+        return settingProvider.getDefaultScreen()
+    }
+
+    fun changeDefaultScreen(screen: String) {
+        settingProvider.saveDefaultScreen(screen)
+    }
+
+    fun getKeyStartScreenFromScreenSettings(): Boolean {
+        return settingProvider.getKeyStartScreenFromScreenSettings()
+    }
+
+    fun changeKeyStartScreenFromScreenSettings(boolean: Boolean) {
+        settingProvider.changeKeyStartScreenFromScreenSettings(boolean)
+    }
+
+    fun changeThemeApp() {
+        settingProvider.changeThemeApp()
+    }
+
+    fun getThemeApp(): String? {
+        return settingProvider.getThemeApp()
+    }
+
+    fun getAutoDarkTheme(): Boolean {
+        return settingProvider.getAutoDarkTheme()
+    }
+
 
 }

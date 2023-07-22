@@ -11,10 +11,21 @@
         android:label="fragment_authorization"
         tools:layout="@layout/fragment_authorization" />
     <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.homefinancialassistant.view.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+
         android:id="@+id/creditCalculatorFragment"
         android:name="com.example.homefinancialassistant.view.fragments.CreditCalculatorFragment"
         android:label="fragment_credit_calculator"
         tools:layout="@layout/fragment_credit_calculator" />
+    <fragment
+        android:id="@+id/exchangeRatesFragment"
+        android:name="com.example.homefinancialassistant.view.fragments.ExchangeRatesFragment"
+        android:label="fragment_exchange_rates"
+        tools:layout="@layout/fragment_exchange_rates" />
     <fragment
         android:id="@+id/expenseJournalFragment"
         android:name="com.example.homefinancialassistant.view.fragments.ExpenseJournalFragment"
@@ -30,6 +41,18 @@
         android:name="com.example.homefinancialassistant.view.fragments.AddConsumptionFragment"
         android:label="fragment_add_consumption"
         tools:layout="@layout/fragment_add_consumption" />
+    <fragment
+        android:id="@+id/consumptionFragment"
+        android:name="com.example.homefinancialassistant.view.fragments.ConsumptionFragment"
+        android:label="ConsumptionFragment" />
+    <fragment
+        android:id="@+id/changeStartScreenFragment"
+        android:name="com.example.homefinancialassistant.view.fragments.ChangeStartScreenFragment"
+        android:label="ChangeStartScreenFragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.homefinancialassistant.view.fragments.SettingsFragment"
+        android:label="SettingsFragment" />
     <fragment
         android:id="@+id/exchangeRatesFragment"
         android:name="com.example.homefinancialassistant.view.fragments.ExchangeRatesFragment"

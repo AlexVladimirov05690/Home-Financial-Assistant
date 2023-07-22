@@ -59,9 +59,11 @@ class ExpenseJournalFragment : Fragment() {
         binding.consumptionRecyclerView.apply {
             consumptionAdapter = ExpenseRecyclerViewAdapter(object : ExpenseRecyclerViewAdapter.OnOpenConsumption {
                 override fun openConsumption(consumption: Consumption) {
+                    //(requireActivity() as MainActivity).launchConsumptionFragment(consumption)
                     val bundle = Bundle()
                     bundle.putParcelable("consumption", consumption)
-                    (requireActivity() as MainActivity).navController.navigate(R.id.consumptionFragment, bundle)
+                    (activity as MainActivity).navController.navigate(R.id.consumptionFragment, bundle)
+
                 }
             })
             adapter = consumptionAdapter

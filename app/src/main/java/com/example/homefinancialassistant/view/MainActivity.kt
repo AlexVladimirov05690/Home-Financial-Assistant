@@ -3,14 +3,24 @@ package com.example.homefinancialassistant.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
-import androidx.core.view.isVisible
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.example.homefinancialassistant.App
 import com.example.homefinancialassistant.R
 import com.example.homefinancialassistant.databinding.ActivityMainBinding
+import com.example.homefinancialassistant.domain.Interactor
+import androidx.core.view.isVisible
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
+    @Inject
+    lateinit var interactor: Interactor
+    init {
+        App.instance.dagger.inject(this)
+        themeAtStartup(interactor.getThemeApp()?:"")
+    }
     lateinit var binding: ActivityMainBinding
     lateinit var navController: NavController
     private val onBackPressedCallBack: OnBackPressedCallback =
@@ -19,14 +29,12 @@ class MainActivity : AppCompatActivity() {
                 showAlertDialog()
             }
         }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.bottomMainMenu.isVisible = false
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment)
-        navController.navigate(R.id.authorizationFragment)
+        navController = Navigation.findNavController(this, R.id.fragmentPlace)
+        openStartScreenWithChangeDarkTheme()
         initButtons()
         onBackPressedDispatcher.addCallback(this, onBackPressedCallBack)
     }
@@ -55,14 +63,16 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
 
+                R.id.settings -> {
+                    navController.navigate(R.id.settingsFragment)
+                    true
+                }
                 else -> false
             }
-
         }
     }
 
     private fun showAlertDialog() {
-
         MaterialAlertDialogBuilder(this)
             .setTitle(R.string.do_you_want_exit)
             .setIcon(R.drawable.ic_launcher_foreground)
@@ -71,6 +81,36 @@ class MainActivity : AppCompatActivity() {
             }
             .setNegativeButton(R.string.no, null)
             .show()
+    }
 
+    private fun showStartScreen(screen: String): Int {
+        val screenInt: Int = when(screen) {
+            "Главный экран" -> R.id.homeFragment
+            "Кредитный калькулятор" -> R.id.creditCalculatorFragment
+            "Конвертёр валют" -> R.id.exchangeRatesFragment
+            "Журнал расходов" -> R.id.expenseJournalFragment
+            "Настройки" -> R.id.settingsFragment
+            else -> R.id.homeFragment
+        }
+        return screenInt
+    }
+
+    private fun openStartScreenWithChangeDarkTheme() {
+        if(interactor.getKeyStartScreenFromScreenSettings()) {
+            navController.navigate(showStartScreen("Настройки"))
+            interactor.changeKeyStartScreenFromScreenSettings(false)
+        }
+        else {
+            navController.navigate(showStartScreen(interactor.getDefaultScreen()))
+        }
+    }
+
+    private fun themeAtStartup(string: String) {
+        return when(string) {
+            "auto" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+            "light" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            "dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            else -> {AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)}
+        }
     }
 }

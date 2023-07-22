@@ -20,7 +20,7 @@
     <string name="null_number">0.0</string>
     <string name="enter_your_email">Введите ваш адресс электронной почты</string>
     <string name="enter_your_password">Введите пароль</string>
-    <string name="authorization">Добро пожаловать</string>
+    <string name="welcome">Добро пожаловать</string>
     <string name="authorization_title">Авторизуйтесь одним из указанных способов или начните пользоваться финансовым ассистентом, как гость</string>
     <string name="exchange_rates_headline">Конвертёр валют</string>
     <string name="sign_google">Sign in with Google</string>
@@ -53,8 +53,13 @@
     <string name="price">Цена</string>
     <string name="all_consumption">Всего потрачено: </string>
     <string name="all_consumption_home">%1$s руб.</string>
-
+    <string name="settings">Настройки</string>
     <string name="rub"> руб.</string>
+    <string name="google"> через Google</string>
+    <string name="e_mail"> через e-mail</string>
+    <string name="auto_vk"> через ВК</string>
+    <string name="implemented_later"> будет реализована позже ;)</string>
+    <string name="authorization"> Авторизация </string>
 
 
 </resources>

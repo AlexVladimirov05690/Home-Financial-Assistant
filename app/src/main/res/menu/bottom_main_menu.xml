@@ -18,8 +18,8 @@
 
     <item
         android:id="@+id/rate"
-        android:icon="@drawable/ic_credit_card"
-        android:title="@string/calculator_credit_card"
+        android:icon="@drawable/baseline_currency_exchange_24"
+        android:title="@string/exchange_rates_headline"
         app:showAsAction="ifRoom"
         />
 
@@ -27,6 +27,13 @@
         android:id="@+id/expenseJournal"
         android:icon="@drawable/baseline_auto_stories_24"
         android:title="@string/expense_journal"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/baseline_settings_suggest_24"
+        android:title="@string/settings"
         app:showAsAction="ifRoom"
         />
 
