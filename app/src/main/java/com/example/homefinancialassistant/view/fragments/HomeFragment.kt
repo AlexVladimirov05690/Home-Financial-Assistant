@@ -47,6 +47,7 @@ class HomeFragment : Fragment() {
         scope.launch {
             withContext(Dispatchers.IO) {
                 val totalPriceFromDb = viewModel.getTotalConsumptionPrice()
+                viewModel.updateSpendingByCategory()
                 withContext(Dispatchers.Main) {
                     binding.text.text =
                         getString(R.string.all_consumption_home, totalPriceFromDb.toString())

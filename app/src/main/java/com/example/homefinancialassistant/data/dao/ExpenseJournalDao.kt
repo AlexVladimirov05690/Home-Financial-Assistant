@@ -1,6 +1,7 @@
 package com.example.homefinancialassistant.data.dao
 
 import androidx.room.*
+import com.example.homefinancialassistant.data.CategoryConsumption
 import com.example.homefinancialassistant.data.Consumption
 import kotlinx.coroutines.flow.Flow
 
@@ -15,6 +16,7 @@ interface ExpenseJournalDao {
     @Query("SELECT * FROM expense_journal WHERE category LIKE :category")
     suspend fun getAllConsumptionCategory(category: String): List<Consumption>
 
+
     @Query("SELECT category FROM expense_journal")
     suspend fun getCategory(): List<String>
 
@@ -27,8 +29,13 @@ interface ExpenseJournalDao {
     @Delete
     fun delete(consumption: Consumption)
 
+    @Query("SELECT * FROM spending_by_category")
+    fun getAllFromSpending(): Flow<List<CategoryConsumption>>
 
+    @Query("SELECT category FROM spending_by_category")
+    suspend fun getCategoryFromSpending(): List<String>
 
-//    @Query("SELECT * FROM expense_journal WHERE id =:simpleId")
-//    fun getSimple(simpleId : Int): Consumption
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun addCategoryConsumption(categoryConsumption: CategoryConsumption)
+
 }

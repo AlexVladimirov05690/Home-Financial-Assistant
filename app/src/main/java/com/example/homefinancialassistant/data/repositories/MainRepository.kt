@@ -1,5 +1,6 @@
 package com.example.homefinancialassistant.data.repositories
 
+import com.example.homefinancialassistant.data.CategoryConsumption
 import com.example.homefinancialassistant.data.Consumption
 import com.example.homefinancialassistant.data.RateCurrencyEntity
 import com.example.homefinancialassistant.data.dao.ExpenseJournalDao
@@ -27,11 +28,6 @@ class MainRepository(
     }
 
     fun insertConsumption(consumption: Consumption) {
-//        consumption.category = consumption.category.replace("\\s".toRegex(), "")
-//        if (consumption.category.first().isLowerCase()) {
-//            consumption.category.replaceFirstChar {
-//            }
-//        }
         val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
             throwable.printStackTrace()
         }
@@ -59,6 +55,10 @@ class MainRepository(
         return expenseJournalDao.getCategory()
     }
 
+    suspend fun getCategoriesFromSpending(): List<String> {
+        return expenseJournalDao.getCategoryFromSpending()
+    }
+
     fun getListCategories(): List<String> {
         return expenseJournalDao.getListCategory()
     }
@@ -71,4 +71,17 @@ class MainRepository(
         return expenseJournalDao.getAllPrice()
     }
 
+    fun getAllFromSpending(): Flow<List<CategoryConsumption>> {
+        return expenseJournalDao.getAllFromSpending()
+    }
+
+    fun insertToSpending(categoryConsumption: CategoryConsumption) {
+        val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
+            throwable.printStackTrace()
+        }
+        val scope = CoroutineScope(Job())
+        scope.launch(Dispatchers.IO + coroutineExceptionHandler) {
+            expenseJournalDao.addCategoryConsumption(categoryConsumption)
+        }
+    }
 }

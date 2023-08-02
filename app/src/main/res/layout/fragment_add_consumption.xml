@@ -34,7 +34,7 @@
             app:endIconMode="clear_text"
             app:layout_constraintTop_toBottomOf="@+id/topHeadlineConsumption">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:id="@+id/enterCategory"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_edit_text"
@@ -82,15 +82,6 @@
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
-
-        <Spinner
-            android:id="@+id/spinnerCategories"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/spinner_height"
-            android:layout_marginEnd="40dp"
-            android:contentDescription="@string/spinnerText"
-            app:layout_constraintBottom_toBottomOf="@+id/enterCategoryContainer"
-            app:layout_constraintEnd_toEndOf="@+id/enterDescriptionContainer" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/buttonContainer"

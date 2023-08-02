@@ -2,6 +2,7 @@ package com.example.homefinancialassistant.domain
 
 import com.example.homefinancialassistant.API
 import com.example.homefinancialassistant.App
+import com.example.homefinancialassistant.data.CategoryConsumption
 import com.example.homefinancialassistant.data.Consumption
 import com.example.homefinancialassistant.data.CurrencyFreaksApi
 import com.example.homefinancialassistant.data.RateCurrencyEntity
@@ -87,13 +88,18 @@ class Interactor(
         return mainRepository.getCategories()
     }
 
-    fun getListCategoriesFromDb(): List<String> {
+    suspend fun getCategoriesFromSpending(): List<String> {
+        return mainRepository.getCategoriesFromSpending()
+    }
+
+    fun getUniqueCategoriesFromDb(): List<String> {
         return mainRepository.getListCategories()
     }
 
     suspend fun getAllConsumptionCategoryFromDb(category: String): List<Consumption> {
         return mainRepository.getAllConsumptionCategory(category)
     }
+
 
     fun getAllPriceFromDb(): Flow<Double> {
         return mainRepository.getAllPrice()
@@ -127,5 +133,11 @@ class Interactor(
         return settingProvider.getAutoDarkTheme()
     }
 
+    fun getAllFromSpending(): Flow<List<CategoryConsumption>>{
+        return mainRepository.getAllFromSpending()
+    }
 
+    fun addToSpending(categoryConsumption: CategoryConsumption) {
+        mainRepository.insertToSpending(categoryConsumption)
+    }
 }

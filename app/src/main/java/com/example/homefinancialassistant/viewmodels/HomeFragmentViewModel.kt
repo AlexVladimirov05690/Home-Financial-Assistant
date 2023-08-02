@@ -3,11 +3,13 @@ package com.example.homefinancialassistant.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.homefinancialassistant.App
+import com.example.homefinancialassistant.data.CategoryConsumption
 import com.example.homefinancialassistant.domain.Interactor
 import com.example.homefinancialassistant.utils.MathHelper
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.firstOrNull
+import java.util.Random
 import javax.inject.Inject
 
 class HomeFragmentViewModel : ViewModel() {
@@ -97,7 +99,18 @@ class HomeFragmentViewModel : ViewModel() {
         return resultFromDb.await()
     }
 
+    suspend fun updateSpendingByCategory() {
+        val listUniqueCategory = interactor.getUniqueCategoriesFromDb()
+        val totalPrice = totalPrice.firstOrNull() ?: 0.0
+        listUniqueCategory.forEach {
+            interactor.addToSpending(CategoryConsumption(it, randomColor(), categoryPrice(it), toPercent(categoryPrice(it), totalPrice).toDouble()))
+        }
+    }
 
+    private fun randomColor(): Int {
+        val rnd = Random()
+        return 0
+    }
 }
 
 

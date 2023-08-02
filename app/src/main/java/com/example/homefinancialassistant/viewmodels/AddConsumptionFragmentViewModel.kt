@@ -28,6 +28,10 @@ class AddConsumptionFragmentViewModel : ViewModel() {
         MutableLiveData<String>()
     }
 
+    suspend fun getCategoriesForAdapter(): List<String> {
+        return interactor.getCategoriesFromSpending()
+    }
+
     fun addConsumption() {
         val consumption = Consumption(
             date = Calendar.getInstance(),

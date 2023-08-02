@@ -4,17 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.homefinancialassistant.R
 import com.example.homefinancialassistant.databinding.FragmentAddConsumptionBinding
 import com.example.homefinancialassistant.view.MainActivity
 import com.example.homefinancialassistant.viewmodels.AddConsumptionFragmentViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class AddConsumptionFragment : Fragment() {
 
     private lateinit var binding: FragmentAddConsumptionBinding
     private val viewModel: AddConsumptionFragmentViewModel by viewModels()
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,10 +34,17 @@ class AddConsumptionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initButtons()
+        val scope = CoroutineScope(Dispatchers.Main)
+        scope.launch {
+            val list = viewModel.getCategoriesForAdapter()
+            initButtons(list)
+        }
     }
 
-    private fun initButtons() {
+    private fun initButtons(listItems: List<String>) {
+
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.simple_item, listItems)
+        binding.enterCategory.setAdapter(arrayAdapter)
         binding.btnAddConsumption.setOnClickListener {
             viewModel.category.value = binding.enterCategory.text.toString()
             viewModel.description.value = binding.enterDescription.text.toString()
