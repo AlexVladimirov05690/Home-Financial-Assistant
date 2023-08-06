@@ -35,6 +35,7 @@
     <string name="add_consumption">Добавление расхода </string>
     <string name="add_category">Введите категорию </string>
     <string name="add_price">Введите цену </string>
+    <string name="add_date">Введите дату </string>
     <string name="add_description">Введите описание </string>
     <string name="addConsumptionButton">Добавить </string>
     <string name="expense_journal">Журнал расходов </string>

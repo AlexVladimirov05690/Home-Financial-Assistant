@@ -3,6 +3,7 @@ package com.example.homefinancialassistant.data.repositories
 import com.example.homefinancialassistant.data.CategoryConsumption
 import com.example.homefinancialassistant.data.Consumption
 import com.example.homefinancialassistant.data.RateCurrencyEntity
+import com.example.homefinancialassistant.data.dao.CacheAllSpendingDao
 import com.example.homefinancialassistant.data.dao.ExpenseJournalDao
 import com.example.homefinancialassistant.data.dao.RateCurrencyDao
 import kotlinx.coroutines.*
@@ -10,7 +11,8 @@ import kotlinx.coroutines.flow.Flow
 
 class MainRepository(
     private val rateCurrencyDao: RateCurrencyDao,
-    private val expenseJournalDao: ExpenseJournalDao
+    private val expenseJournalDao: ExpenseJournalDao,
+    private val cacheAllSpendingDao: CacheAllSpendingDao
 ) {
 
     suspend fun getAllFromRateCurrencyDb(): List<RateCurrencyEntity> {
@@ -55,10 +57,6 @@ class MainRepository(
         return expenseJournalDao.getCategory()
     }
 
-    suspend fun getCategoriesFromSpending(): List<String> {
-        return expenseJournalDao.getCategoryFromSpending()
-    }
-
     fun getListCategories(): List<String> {
         return expenseJournalDao.getListCategory()
     }
@@ -71,8 +69,12 @@ class MainRepository(
         return expenseJournalDao.getAllPrice()
     }
 
+    suspend fun getCategoriesFromSpending(): List<String> {
+        return cacheAllSpendingDao.getCategoryFromSpending()
+    }
+
     fun getAllFromSpending(): Flow<List<CategoryConsumption>> {
-        return expenseJournalDao.getAllFromSpending()
+        return cacheAllSpendingDao.getAllFromSpending()
     }
 
     fun insertToSpending(categoryConsumption: CategoryConsumption) {
@@ -81,7 +83,7 @@ class MainRepository(
         }
         val scope = CoroutineScope(Job())
         scope.launch(Dispatchers.IO + coroutineExceptionHandler) {
-            expenseJournalDao.addCategoryConsumption(categoryConsumption)
+            cacheAllSpendingDao.addCategoryConsumption(categoryConsumption)
         }
     }
 }

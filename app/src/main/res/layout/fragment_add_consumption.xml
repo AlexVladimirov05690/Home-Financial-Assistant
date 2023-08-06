@@ -9,10 +9,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/add_consumption_fragment_height"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="20dp"
-        android:background="@color/white">
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/topHeadlineConsumption"
@@ -49,9 +49,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_between_elements"
+            android:hint="@string/add_price"
             app:boxStrokeColor="@color/secondary_color"
             app:endIconMode="clear_text"
-            android:hint="@string/add_price"
             app:layout_constraintTop_toBottomOf="@+id/enterCategoryContainer">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -63,6 +63,45 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <androidx.appcompat.widget.LinearLayoutCompat
+
+            android:id="@+id/enterDateContainer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_edit_text"
+            app:layout_constraintTop_toBottomOf="@+id/enterPriceContainer"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_weight="0.75"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/add_date"
+                app:layout_constraintStart_toStartOf="parent"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/enterDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_edit_text"
+                    android:theme="@style/Field_credit"
+                    android:inputType="text"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDate"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:icon="@drawable/baseline_calendar_month"
+                app:iconGravity="textEnd"
+                app:iconSize="25dp"
+                android:contentDescription="button"
+                />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/enterDescriptionContainer"
             android:layout_width="match_parent"
@@ -71,15 +110,14 @@
             android:hint="@string/add_description"
             app:boxStrokeColor="@color/secondary_color"
             app:endIconMode="clear_text"
-            app:layout_constraintTop_toBottomOf="@+id/enterPriceContainer">
+            app:layout_constraintTop_toBottomOf="@+id/enterDateContainer">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/enterDescription"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_edit_text"
                 android:inputType="text"
-                android:theme="@style/Field_credit"
-                />
+                android:theme="@style/Field_credit" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

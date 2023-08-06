@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.example.homefinancialassistant.App
 import com.example.homefinancialassistant.data.Consumption
 import com.example.homefinancialassistant.domain.Interactor
+import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
@@ -28,13 +29,28 @@ class AddConsumptionFragmentViewModel : ViewModel() {
         MutableLiveData<String>()
     }
 
+    val date: MutableLiveData<Calendar> by lazy {
+        MutableLiveData<Calendar>()
+    }
+
     suspend fun getCategoriesForAdapter(): List<String> {
         return interactor.getCategoriesFromSpending()
     }
 
+    fun calendarToString(): String {
+        val sdf = SimpleDateFormat(DATE_FORMAT, Locale.ROOT)
+        return sdf.format(date.value?.time ?: Calendar.getInstance().time)
+    }
+
+    fun setToday() {
+        date.value = Calendar.getInstance()
+    }
+
+
+
     fun addConsumption() {
         val consumption = Consumption(
-            date = Calendar.getInstance(),
+            date = date.value ?: Calendar.getInstance(),
             category = category.value ?: "",
             price = price.value ?: 0.0,
             description = description.value ?: ""
@@ -42,5 +58,8 @@ class AddConsumptionFragmentViewModel : ViewModel() {
         interactor.mainRepository.insertConsumption(consumption)
     }
 
+    companion object {
+        const val DATE_FORMAT = "dd.MM.yyyy"
+    }
 
 }

@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.homefinancialassistant.R
 import com.example.homefinancialassistant.data.Consumption
-import com.example.homefinancialassistant.data.db.converters.Converters
 import com.example.homefinancialassistant.databinding.FragmentConsumptionBinding
 import com.example.homefinancialassistant.view.MainActivity
 import com.example.homefinancialassistant.viewmodels.ConsumptionFragmentViewModel
@@ -42,7 +41,7 @@ class ConsumptionFragment: Fragment() {
     }
 
     private fun calendarToString(calendar: Calendar): String {
-        val sdf = SimpleDateFormat(Converters.FORMAT_DATE, Locale.ROOT)
+        val sdf = SimpleDateFormat(DATE_FORMAT, Locale.ROOT)
         val date = calendar.time
         return sdf.format(date)
     }
@@ -59,5 +58,6 @@ class ConsumptionFragment: Fragment() {
 
     companion object {
         val consumptionDefault = Consumption(0, Calendar.getInstance(), "", 0.0, "")
+        const val DATE_FORMAT = "dd.MM.yyyy"
     }
 }

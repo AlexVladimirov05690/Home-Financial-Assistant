@@ -8,11 +8,11 @@ import com.example.homefinancialassistant.data.RateCurrencyEntity
 
 @Dao
 interface RateCurrencyDao {
+
     @Query("SELECT * FROM rates_table")
     suspend fun getAll(): List<RateCurrencyEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(listRates: List<RateCurrencyEntity>)
-
 
 }

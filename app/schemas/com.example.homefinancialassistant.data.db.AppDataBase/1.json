@@ -1,8 +1,8 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 2,
-    "identityHash": "e00aa0fb3e8fb6670ee797a8b2e6bf80",
+    "version": 1,
+    "identityHash": "da6eec1771c8124f25e164b07cc5627e",
     "entities": [
       {
         "tableName": "expense_journal",
@@ -85,12 +85,54 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "rates_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`currency` TEXT NOT NULL, `date` TEXT NOT NULL, `rate` REAL NOT NULL, PRIMARY KEY(`currency`))",
+        "fields": [
+          {
+            "fieldPath": "currency",
+            "columnName": "currency",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rate",
+            "columnName": "rate",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "currency"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_rates_table_currency",
+            "unique": true,
+            "columnNames": [
+              "currency"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_rates_table_currency` ON `${TABLE_NAME}` (`currency`)"
+          }
+        ],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e00aa0fb3e8fb6670ee797a8b2e6bf80')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'da6eec1771c8124f25e164b07cc5627e')"
     ]
   }
 }
