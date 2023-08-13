@@ -25,6 +25,7 @@ class DatabaseModule {
     fun provideMainRepository(appDataBase: AppDataBase) = MainRepository(
         appDataBase.rateCurrencyDao(),
         appDataBase.expenseJournalDao(),
-        appDataBase.cacheAllSpendingDao()
+        appDataBase.cacheAllSpendingDao(),
+        appDataBase.incomeDao()
     )
 }

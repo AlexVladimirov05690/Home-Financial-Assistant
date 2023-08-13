@@ -105,6 +105,10 @@ class Interactor(
         return mainRepository.getAllPrice()
     }
 
+    fun getAllIncomeFromDb(): Flow<Double> {
+        return mainRepository.getAllIncome()
+    }
+
     fun getDefaultScreen(): String {
         return settingProvider.getDefaultScreen()
     }
@@ -140,4 +144,6 @@ class Interactor(
     fun addToSpending(categoryConsumption: CategoryConsumption) {
         mainRepository.insertToSpending(categoryConsumption)
     }
+
+
 }

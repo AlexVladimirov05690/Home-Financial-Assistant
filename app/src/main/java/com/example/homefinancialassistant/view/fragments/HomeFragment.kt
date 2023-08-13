@@ -25,6 +25,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeFragmentViewModel by viewModels()
     private lateinit var homeCategoryColorsAdapter: HomeCategoryColorsAdapter
+
     @Inject
     lateinit var mathHelper: MathHelper
 
@@ -47,10 +48,13 @@ class HomeFragment : Fragment() {
         scope.launch {
             withContext(Dispatchers.IO) {
                 val totalPriceFromDb = viewModel.getTotalConsumptionPrice()
+                val balance = viewModel.getBalance()
                 viewModel.updateSpendingByCategory()
                 withContext(Dispatchers.Main) {
                     binding.text.text =
                         getString(R.string.all_consumption_home, totalPriceFromDb.toString())
+                    binding.balance.text =
+                        getString(R.string.all_consumption_home, balance.toString())
                 }
             }
             withContext(Dispatchers.IO) {

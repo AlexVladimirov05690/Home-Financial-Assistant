@@ -14,6 +14,7 @@ import javax.inject.Inject
 
 class HomeFragmentViewModel : ViewModel() {
     private val totalPrice: Flow<Double>
+    private val totalIncome: Flow<Double>
 
     @Inject
     lateinit var interactor: Interactor
@@ -25,6 +26,7 @@ class HomeFragmentViewModel : ViewModel() {
     init {
         App.instance.dagger.inject(this)
         totalPrice = interactor.getAllPriceFromDb()
+        totalIncome = interactor.getAllIncomeFromDb()
     }
 
     private suspend fun getUniqueCategoryFromDb(): List<String> {
@@ -89,6 +91,16 @@ class HomeFragmentViewModel : ViewModel() {
 
     private fun percentToAngle(percent: Float): Float {
         return percent / 100 * 360
+    }
+
+    suspend fun getBalance(): Double {
+        val balanceScope = viewModelScope.async {
+            val allIncome: Double = totalIncome.firstOrNull() ?: 0.0
+            val allConsumption = totalPrice.firstOrNull() ?: 0.0
+            val balance = mathHelper.rounding(allIncome - allConsumption)
+            balance
+        }
+        return balanceScope.await()
     }
 
     suspend fun getTotalConsumptionPrice(): Double {

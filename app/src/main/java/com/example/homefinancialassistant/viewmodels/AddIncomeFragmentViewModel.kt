@@ -3,13 +3,14 @@ package com.example.homefinancialassistant.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.homefinancialassistant.App
-import com.example.homefinancialassistant.data.Consumption
+import com.example.homefinancialassistant.data.Income
 import com.example.homefinancialassistant.domain.Interactor
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Locale
 import javax.inject.Inject
 
-class AddConsumptionFragmentViewModel : ViewModel() {
+class AddIncomeFragmentViewModel: ViewModel() {
     @Inject
     lateinit var interactor: Interactor
 
@@ -17,7 +18,7 @@ class AddConsumptionFragmentViewModel : ViewModel() {
         App.instance.dagger.inject(this)
     }
 
-    val price: MutableLiveData<Double> by lazy {
+    val sum: MutableLiveData<Double> by lazy {
         MutableLiveData<Double>()
     }
 
@@ -33,10 +34,6 @@ class AddConsumptionFragmentViewModel : ViewModel() {
         MutableLiveData<Calendar>()
     }
 
-    suspend fun getCategoriesForAdapter(): List<String> {
-        return interactor.getCategoriesFromSpending()
-    }
-
     fun calendarToString(): String {
         val sdf = SimpleDateFormat(DATE_FORMAT, Locale.ROOT)
         return sdf.format(date.value?.time ?: Calendar.getInstance().time)
@@ -46,19 +43,17 @@ class AddConsumptionFragmentViewModel : ViewModel() {
         date.value = Calendar.getInstance()
     }
 
-
-    fun addConsumption() {
-        val consumption = Consumption(
+    fun addIncome() {
+        val income = Income(
             date = date.value ?: Calendar.getInstance(),
             category = category.value ?: "",
-            price = price.value ?: 0.0,
+            sum = sum.value ?: 0.0,
             description = description.value ?: ""
         )
-        interactor.mainRepository.insertConsumption(consumption)
+        interactor.mainRepository.insertIncome(income)
     }
 
     companion object {
         const val DATE_FORMAT = "dd.MM.yyyy"
     }
-
 }

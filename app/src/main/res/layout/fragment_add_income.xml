@@ -18,7 +18,7 @@
             android:id="@+id/topHeadlineConsumption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/add_consumption"
+            android:text="@string/add_income"
             android:theme="@style/HeadLine1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_between_elements"
-            android:hint="@string/add_category"
             app:boxStrokeColor="@color/secondary_color"
             app:endIconMode="clear_text"
             app:layout_constraintTop_toBottomOf="@+id/topHeadlineConsumption">
@@ -39,23 +38,24 @@
                 android:id="@+id/enterCategory"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_edit_text"
+                android:hint="@string/add_category"
                 android:inputType="text"
                 android:theme="@style/Field_credit" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/enterPriceContainer"
+            android:id="@+id/enterSumContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_between_elements"
-            android:hint="@string/add_price"
+            android:hint="@string/add_sum"
             app:boxStrokeColor="@color/secondary_color"
             app:endIconMode="clear_text"
             app:layout_constraintTop_toBottomOf="@+id/enterCategoryContainer">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/enterPrice"
+                android:id="@+id/enterSum"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_edit_text"
                 android:inputType="numberDecimal"
@@ -68,7 +68,7 @@
             android:id="@+id/enterDateContainer"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_edit_text"
-            app:layout_constraintTop_toBottomOf="@+id/enterPriceContainer"
+            app:layout_constraintTop_toBottomOf="@+id/enterSumContainer"
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
@@ -130,7 +130,7 @@
             app:layout_constraintTop_toBottomOf="@+id/enterDescriptionContainer">
 
             <Button
-                android:id="@+id/btnAddConsumption"
+                android:id="@+id/btnAddIncome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"

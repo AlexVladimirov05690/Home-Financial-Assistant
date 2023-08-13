@@ -53,6 +53,9 @@ class ExpenseJournalFragment : Fragment() {
         binding.addConsumptionFabButton.setOnClickListener {
             (activity as MainActivity).navController.navigate(R.id.addConsumptionFragment)
         }
+        binding.addIncomeFabButton.setOnClickListener {
+            (activity as MainActivity).navController.navigate(R.id.addIncomeFragment)
+        }
     }
 
     private fun initAdapter() {

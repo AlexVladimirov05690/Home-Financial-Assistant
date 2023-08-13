@@ -34,11 +34,34 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/costChartView">
 
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/balanceContainer"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/consumptionRecyclerViewHome">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_weight="0.5"
+                android:layout_height="match_parent"
+                android:text="@string/your_balance"
+                android:theme="@style/ConsumptionItem"/>
+
+            <TextView
+                android:id="@+id/balance"
+                android:layout_weight="0.5"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:theme="@style/ConsumptionItem"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/consumptionRecyclerViewHome"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="350dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="1.0"
             tools:listitem="@layout/category_colors_item"
             />
