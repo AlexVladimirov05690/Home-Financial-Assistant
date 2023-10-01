@@ -9,11 +9,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
-import com.example.homefinancialassistant.compose.screens.ChangeStartScreen
+import com.example.homefinancialassistant.compose.screens.HomeScreen
 import com.example.homefinancialassistant.compose.ui.HomeFinancialAssistantTheme
-import com.example.homefinancialassistant.view.MainActivity
 
-class ChangeStartScreenFragment: Fragment() {
+class HomeScreenFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -22,10 +21,8 @@ class ChangeStartScreenFragment: Fragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 HomeFinancialAssistantTheme() {
-                    Surface(
-                        modifier = Modifier.fillMaxSize()
-                    ) {
-                        ChangeStartScreen(activity as MainActivity)
+                    Surface(modifier = Modifier.fillMaxSize()) {
+                        HomeScreen()
                     }
                 }
             }

@@ -2,6 +2,7 @@ package com.example.homefinancialassistant.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.homefinancialassistant.App
 import com.example.homefinancialassistant.domain.Interactor
 import com.example.homefinancialassistant.utils.MathHelper
@@ -32,14 +33,18 @@ class ExchangeRatesFragmentViewModel : ViewModel() {
         MutableLiveData<Double>()
     }
 
+    val dateUpdate: MutableLiveData<String> by lazy {
+        MutableLiveData<String>()
+    }
+
+
 
     fun updateRateCurrencyFromDb() {
         val mapFromDb = mutableMapOf<String, Double>()
         val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
             throwable.printStackTrace()
         }
-        val scope = CoroutineScope(Job())
-        scope.launch(Dispatchers.IO + coroutineExceptionHandler) {
+        viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
             println("Запрос данных")
             val resultDb = async {
                 interactor.ratesFromDb().forEach {
@@ -52,6 +57,10 @@ class ExchangeRatesFragmentViewModel : ViewModel() {
             courseEuro.postValue(fromMap(mapFromDb, "EUR"))
             courseBtc.postValue(fromMap(mapFromDb, "BTC"))
         }
+
+        viewModelScope.launch {
+            dateUpdate()
+        }
     }
 
     private fun fromMap(map: Map<String, Double>, key: String) : Double {
@@ -61,5 +70,10 @@ class ExchangeRatesFragmentViewModel : ViewModel() {
             mathHelper.rounding((map["RUB"] ?: 9999.0) / (map[key] ?: 9999.0))
         }
     }
+
+    private fun dateUpdate() {
+        dateUpdate.value = interactor.settingProvider.getDateOfLastRequest()
+    }
+
 
 }

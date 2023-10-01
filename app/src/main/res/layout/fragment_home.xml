@@ -81,5 +81,18 @@
         app:layout_constraintStart_toStartOf="@+id/costChartView"
         app:layout_constraintTop_toTopOf="@+id/costChartView" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/launchNewHomeScreen"
+        android:layout_width="@dimen/fab_button"
+        android:layout_height="@dimen/fab_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/fab_button_margin"
+        android:layout_marginBottom="@dimen/fab_button_margin"
+        android:contentDescription="@string/add_button_desc"
+        android:src="@drawable/ic_home"
+        android:backgroundTint="@color/color_vk"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

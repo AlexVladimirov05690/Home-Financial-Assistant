@@ -18,6 +18,7 @@
     <string name="monthly_payment_back">Введите ежемесячный платёж:</string>
     <string name="overpayment">Переплата:</string>
     <string name="null_number">0.0</string>
+    <string name="null_date">99.99.9999</string>
     <string name="enter_your_email">Введите ваш адресс электронной почты</string>
     <string name="enter_your_password">Введите пароль</string>
     <string name="welcome">Добро пожаловать</string>
@@ -55,7 +56,7 @@
     <string name="descConsumption">Описание траты</string>
     <string name="price">Цена</string>
     <string name="all_consumption">Всего потрачено: </string>
-    <string name="all_consumption_home">%1$s руб.</string>
+    <string name="add_rub_in_string">%1$s руб.</string>
     <string name="settings">Настройки</string>
     <string name="rub"> руб.</string>
     <string name="google"> через Google</string>
@@ -64,8 +65,8 @@
     <string name="implemented_later"> будет реализована позже ;)</string>
     <string name="authorization"> Авторизация </string>
     <string name="your_balance"> Ваш баланс </string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="date_update"> Обновлено: </string>
+
 
 
 </resources>

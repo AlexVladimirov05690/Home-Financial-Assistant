@@ -11,6 +11,7 @@ import com.example.homefinancialassistant.App
 import com.example.homefinancialassistant.R
 import com.example.homefinancialassistant.databinding.FragmentHomeBinding
 import com.example.homefinancialassistant.utils.MathHelper
+import com.example.homefinancialassistant.view.MainActivity
 import com.example.homefinancialassistant.view.adapters.HomeCategoryColorsAdapter
 import com.example.homefinancialassistant.view.adapters.TopSpacingItemDecoration
 import com.example.homefinancialassistant.viewmodels.HomeFragmentViewModel
@@ -44,6 +45,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
+        binding.launchNewHomeScreen.setOnClickListener {
+            (activity as MainActivity).navController.navigate(R.id.homeScreenFragment)
+        }
         val scope = CoroutineScope(Dispatchers.Main)
         scope.launch {
             withContext(Dispatchers.IO) {
@@ -52,9 +56,9 @@ class HomeFragment : Fragment() {
                 viewModel.updateSpendingByCategory()
                 withContext(Dispatchers.Main) {
                     binding.text.text =
-                        getString(R.string.all_consumption_home, totalPriceFromDb.toString())
+                        getString(R.string.add_rub_in_string, totalPriceFromDb.toString())
                     binding.balance.text =
-                        getString(R.string.all_consumption_home, balance.toString())
+                        getString(R.string.add_rub_in_string, balance.toString())
                 }
             }
             withContext(Dispatchers.IO) {

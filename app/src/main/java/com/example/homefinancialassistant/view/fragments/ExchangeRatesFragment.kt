@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.homefinancialassistant.R
 import com.example.homefinancialassistant.databinding.FragmentExchangeRatesBinding
 import com.example.homefinancialassistant.viewmodels.ExchangeRatesFragmentViewModel
 
@@ -27,15 +28,19 @@ class ExchangeRatesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.courseEuro.observe(viewLifecycleOwner) {
-            binding.courseEuro.text = it.toString()
+            binding.courseEuro.text = getString(R.string.add_rub_in_string, it.toString())
         }
 
         viewModel.courseDollar.observe(viewLifecycleOwner) {
-            binding.courseDollar.text = it.toString()
+            binding.courseDollar.text = getString(R.string.add_rub_in_string, it.toString())
         }
 
         viewModel.courseBtc.observe(viewLifecycleOwner) {
-            binding.courseBtc.text = it.toString()
+            binding.courseBtc.text = getString(R.string.add_rub_in_string, it.toString())
+        }
+
+        viewModel.dateUpdate.observe(viewLifecycleOwner) {
+            binding.date.text = it
         }
 
         binding.refreshCourse.setOnClickListener {

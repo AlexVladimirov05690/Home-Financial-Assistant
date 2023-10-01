@@ -16,6 +16,7 @@ import com.example.homefinancialassistant.viewmodels.CreditCalculatorFragmentVie
 import com.example.homefinancialassistant.viewmodels.ExchangeRatesFragmentViewModel
 import com.example.homefinancialassistant.viewmodels.ExpenseJournalFragmentViewModel
 import com.example.homefinancialassistant.viewmodels.HomeFragmentViewModel
+import com.example.homefinancialassistant.viewmodels.HomeScreenViewModel
 import com.example.homefinancialassistant.viewmodels.SettingFragmentViewModel
 import dagger.Component
 import javax.inject.Singleton
@@ -36,4 +37,5 @@ interface AppComponent {
     fun inject(mainActivity: MainActivity)
     fun inject(homeFragment: HomeFragment)
     fun inject(addIncomeFragmentViewModel: AddIncomeFragmentViewModel)
+    fun inject(homeScreenViewModel: HomeScreenViewModel)
 }

@@ -53,27 +53,29 @@ class SettingProvider(context: Context) {
     }
 
 
-
     fun changeDate(calendar: Calendar) {
-        val date = calendar.get(Calendar.DATE).toString() + calendar.get(Calendar.MONTH)
-            .toString() + calendar.get(Calendar.YEAR).toString()
+        val date = calendar.get(Calendar.DATE).toString() + "." + (calendar.get(Calendar.MONTH) + 1)
+            .toString() + "." + calendar.get(Calendar.YEAR).toString()
         preferences.edit().putString(DATE_OF_LAST_REQUEST, date).apply()
     }
 
+
     fun changeThemeApp() {
-        return when(preferences.getString(THEME, "auto")) {
+        return when (preferences.getString(THEME, "auto")) {
             "auto" -> {
                 preferences.edit { putString(THEME, "light") }
                 preferences.edit { putBoolean(KEY_AUTO_DARK_MODE, false) }
                 preferences.edit { putBoolean(KEY_DARK_MODE, false) }
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
+
             "light" -> {
                 preferences.edit { putString(THEME, "dark") }
                 preferences.edit { putBoolean(KEY_AUTO_DARK_MODE, false) }
                 preferences.edit { putBoolean(KEY_DARK_MODE, true) }
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             }
+
             "dark" -> {
                 preferences.edit { putString(THEME, "auto") }
                 preferences.edit { putBoolean(KEY_AUTO_DARK_MODE, true) }
@@ -81,7 +83,10 @@ class SettingProvider(context: Context) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
 
             }
-            else -> {preferences.edit { putString(THEME, "auto")}}
+
+            else -> {
+                preferences.edit { putString(THEME, "auto") }
+            }
         }
     }
 
@@ -89,7 +94,7 @@ class SettingProvider(context: Context) {
         return preferences.getString(THEME, "auto")
     }
 
-    private fun getDateOfLastRequest(): String {
+    fun getDateOfLastRequest(): String {
         return preferences.getString(DATE_OF_LAST_REQUEST, "000000").toString()
     }
 

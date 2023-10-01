@@ -36,7 +36,7 @@ class ConsumptionFragment: Fragment() {
         binding.categoryConsumption.text = consumption.category
         binding.dateConsumption.text = calendarToString(consumption.date)
         binding.descConsumption.text = consumption.description
-        binding.priceConsumption.text = getString(R.string.all_consumption_home, consumption.price.toString())
+        binding.priceConsumption.text = getString(R.string.add_rub_in_string, consumption.price.toString())
         initButton()
     }
 

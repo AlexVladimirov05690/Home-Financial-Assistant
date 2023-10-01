@@ -35,13 +35,13 @@ class HomeFragmentViewModel : ViewModel() {
             resultList.addAll(interactor.getCategoriesFromDb())
             resultList.sort()
             resultList.distinct()
-            deleteDublicate(resultList)
+            deleteDuplicate(resultList)
         }
 
         return result.await()
     }
 
-    private fun deleteDublicate(list: List<String>): MutableList<String> {
+    private fun deleteDuplicate(list: List<String>): MutableList<String> {
         val result = mutableListOf<String>()
         return if (list.isEmpty()) result
         else {
@@ -121,7 +121,7 @@ class HomeFragmentViewModel : ViewModel() {
 
     private fun randomColor(): Int {
         val rnd = Random()
-        return 0
+        return rnd.nextInt()
     }
 }
 
