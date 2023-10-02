@@ -53,7 +53,7 @@ class HomeFragment : Fragment() {
             withContext(Dispatchers.IO) {
                 val totalPriceFromDb = viewModel.getTotalConsumptionPrice()
                 val balance = viewModel.getBalance()
-                viewModel.updateSpendingByCategory()
+                //viewModel.updateSpendingByCategory()
                 withContext(Dispatchers.Main) {
                     binding.text.text =
                         getString(R.string.add_rub_in_string, totalPriceFromDb.toString())

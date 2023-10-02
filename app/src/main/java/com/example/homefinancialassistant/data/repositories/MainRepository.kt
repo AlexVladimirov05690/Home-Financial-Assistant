@@ -1,5 +1,6 @@
 package com.example.homefinancialassistant.data.repositories
 
+import com.example.homefinancialassistant.App
 import com.example.homefinancialassistant.data.CategoryConsumption
 import com.example.homefinancialassistant.data.Consumption
 import com.example.homefinancialassistant.data.Income
@@ -8,8 +9,12 @@ import com.example.homefinancialassistant.data.dao.CacheAllSpendingDao
 import com.example.homefinancialassistant.data.dao.ExpenseJournalDao
 import com.example.homefinancialassistant.data.dao.IncomeDao
 import com.example.homefinancialassistant.data.dao.RateCurrencyDao
+import com.example.homefinancialassistant.utils.MathHelper
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.firstOrNull
+import java.util.Random
+import javax.inject.Inject
 
 class MainRepository(
     private val rateCurrencyDao: RateCurrencyDao,
@@ -17,6 +22,13 @@ class MainRepository(
     private val cacheAllSpendingDao: CacheAllSpendingDao,
     private val incomeDao: IncomeDao
 ) {
+
+    @Inject
+    lateinit var mathHelper: MathHelper
+
+    init {
+        App.instance.dagger.inject(this)
+    }
 
     suspend fun getAllFromRateCurrencyDb(): List<RateCurrencyEntity> {
         return rateCurrencyDao.getAll()
@@ -32,13 +44,14 @@ class MainRepository(
         }
     }
 
-    fun insertConsumption(consumption: Consumption) {
+    suspend fun insertConsumption(consumption: Consumption) {
         val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
             throwable.printStackTrace()
         }
-        val scope = CoroutineScope(Job())
-        scope.launch(Dispatchers.IO + coroutineExceptionHandler) {
+        val scope = CoroutineScope(Job() + coroutineExceptionHandler)
+        val load = scope.launch(Dispatchers.IO) {
             expenseJournalDao.insert(consumption)
+            updateSpendingDb()
         }
     }
 
@@ -63,6 +76,7 @@ class MainRepository(
         val scope = CoroutineScope(Job())
         scope.launch(Dispatchers.IO + coroutineExceptionHandler) {
             expenseJournalDao.delete(consumption)
+            updateSpendingDb()
         }
     }
 
@@ -102,5 +116,24 @@ class MainRepository(
         scope.launch(Dispatchers.IO + coroutineExceptionHandler) {
             cacheAllSpendingDao.addCategoryConsumption(categoryConsumption)
         }
+    }
+
+    private suspend fun updateSpendingDb() {
+        val totalPrice = expenseJournalDao.getAllPrice().firstOrNull() ?: 0.0
+        val listCategoryConsumption = expenseJournalDao.getListCategory()
+        val scope = CoroutineScope(Job())
+        scope.launch {
+            cacheAllSpendingDao.deleteAll()
+            listCategoryConsumption.forEach {
+                val priceConsumption = expenseJournalDao.getPriceConsumption(it).firstOrNull() ?: 0.0
+                cacheAllSpendingDao.addCategoryConsumption(CategoryConsumption(it, randomColor(), priceConsumption,mathHelper.toPercent(priceConsumption, totalPrice).toDouble()))
+            }
+        }
+
+    }
+
+    private fun randomColor(): Int {
+        val rnd = Random()
+        return rnd.nextInt()
     }
 }

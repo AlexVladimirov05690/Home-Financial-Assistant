@@ -19,4 +19,7 @@ interface CacheAllSpendingDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addCategoryConsumption(categoryConsumption: CategoryConsumption)
 
+    @Query("DELETE FROM spending_by_category")
+    fun deleteAll()
+
 }

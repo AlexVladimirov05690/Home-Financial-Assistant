@@ -12,6 +12,9 @@ interface ExpenseJournalDao {
     @Query("SELECT SUM(price) FROM expense_journal")
     fun getAllPrice(): Flow<Double>
 
+    @Query("SELECT SUM(price) FROM expense_journal WHERE category LIKE :category")
+    fun getPriceConsumption(category: String): Flow<Double>
+
     @Query("SELECT * FROM expense_journal WHERE category LIKE :category")
     suspend fun getAllConsumptionCategory(category: String): List<Consumption>
 

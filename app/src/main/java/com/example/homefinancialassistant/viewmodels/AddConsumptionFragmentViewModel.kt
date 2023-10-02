@@ -2,9 +2,11 @@ package com.example.homefinancialassistant.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.homefinancialassistant.App
 import com.example.homefinancialassistant.data.Consumption
 import com.example.homefinancialassistant.domain.Interactor
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -48,13 +50,15 @@ class AddConsumptionFragmentViewModel : ViewModel() {
 
 
     fun addConsumption() {
-        val consumption = Consumption(
-            date = date.value ?: Calendar.getInstance(),
-            category = category.value ?: "",
-            price = price.value ?: 0.0,
-            description = description.value ?: ""
-        )
-        interactor.mainRepository.insertConsumption(consumption)
+        viewModelScope.launch {
+            val consumption = Consumption(
+                date = date.value ?: Calendar.getInstance(),
+                category = category.value ?: "",
+                price = price.value ?: 0.0,
+                description = description.value ?: ""
+            )
+            interactor.mainRepository.insertConsumption(consumption)
+        }
     }
 
     companion object {

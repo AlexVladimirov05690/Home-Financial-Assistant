@@ -1,5 +1,6 @@
 package com.example.homefinancialassistant.di
 
+import com.example.homefinancialassistant.data.repositories.MainRepository
 import com.example.homefinancialassistant.di.modules.DatabaseModule
 import com.example.homefinancialassistant.di.modules.DomainModule
 import com.example.homefinancialassistant.di.modules.MathModule
@@ -38,4 +39,5 @@ interface AppComponent {
     fun inject(homeFragment: HomeFragment)
     fun inject(addIncomeFragmentViewModel: AddIncomeFragmentViewModel)
     fun inject(homeScreenViewModel: HomeScreenViewModel)
+    fun inject(mainRepository: MainRepository)
 }

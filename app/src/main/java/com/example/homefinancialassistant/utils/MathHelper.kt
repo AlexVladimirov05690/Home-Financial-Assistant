@@ -11,4 +11,7 @@ class MathHelper {
     fun rounding(number: Float): Float {
         return BigDecimal(number.toDouble()).setScale(2, RoundingMode.HALF_UP).toFloat()
     }
+    fun toPercent(price: Double, totalPrice: Double): Float {
+        return rounding((price / totalPrice * 100).toFloat())
+    }
 }
