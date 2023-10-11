@@ -35,7 +35,7 @@ class HomeScreenViewModel: ViewModel() {
     }
 
     companion object {
-        val list = listOf(CategoryConsumption("Автомобиль", 123, 950.0, 30.0))
-        val list2 = listOf(CategoryConsumption("Квартплата", 123, 950.0, 80.0))
+        val list = listOf(CategoryConsumption("Автомобиль", "123", 950.0, 30.0))
+        val list2 = listOf(CategoryConsumption("Квартплата", "123", 950.0, 80.0))
     }
 }

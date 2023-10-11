@@ -115,7 +115,7 @@ class HomeFragmentViewModel : ViewModel() {
         val listUniqueCategory = interactor.getUniqueCategoriesFromDb()
         val totalPrice = totalPrice.firstOrNull() ?: 0.0
         listUniqueCategory.forEach {
-            interactor.addToSpending(CategoryConsumption(it, randomColor(), categoryPrice(it), toPercent(categoryPrice(it), totalPrice).toDouble()))
+            interactor.addToSpending(CategoryConsumption(it, "", categoryPrice(it), toPercent(categoryPrice(it), totalPrice).toDouble()))
         }
     }
 

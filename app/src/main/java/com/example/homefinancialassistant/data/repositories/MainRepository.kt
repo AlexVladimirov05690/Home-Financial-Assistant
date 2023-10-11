@@ -126,7 +126,7 @@ class MainRepository(
             cacheAllSpendingDao.deleteAll()
             listCategoryConsumption.forEach {
                 val priceConsumption = expenseJournalDao.getPriceConsumption(it).firstOrNull() ?: 0.0
-                cacheAllSpendingDao.addCategoryConsumption(CategoryConsumption(it, randomColor(), priceConsumption,mathHelper.toPercent(priceConsumption, totalPrice).toDouble()))
+                cacheAllSpendingDao.addCategoryConsumption(CategoryConsumption(it, "", priceConsumption,mathHelper.toPercent(priceConsumption, totalPrice).toDouble()))
             }
         }
 

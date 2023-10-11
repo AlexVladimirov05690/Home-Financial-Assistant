@@ -13,8 +13,8 @@ import kotlinx.parcelize.Parcelize
 data class CategoryConsumption(
         @PrimaryKey
         val category: String,
-        @ColumnInfo(name = "color")
-        val color: Int,
+        @ColumnInfo(name = "color", defaultValue = "")
+        val color: String,
         @ColumnInfo(name = "price")
         val price: Double,
         @ColumnInfo(name = "percent")
